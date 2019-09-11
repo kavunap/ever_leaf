@@ -7,7 +7,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.integer :priority
       t.date :start_date
       t.date :end_date
-      t.references :user, foreign_key: true
+      #t.references :user, foreign_key: true
 
       t.timestamps
     end
