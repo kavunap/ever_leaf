@@ -34,4 +34,11 @@ RSpec.feature "Task management function", type: :feature do
   scenario "Test task details" do
 
   end
+
+  scenario "Test whether tasks are arranged in descending order of creation date" do
+    Task.create!(name: 'test_task_01', content: 'testtesttest')
+    Task.create!(name: 'test_task_03', content: 'samplesample')
+
+    
+  end
 end
