@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  helper_method :sort_direction
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
@@ -54,5 +55,8 @@ class TasksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def task_params
       params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :user_id)
+    end
+    def sort_direction
+      %w[asc desc].include?(params[:priority]) ? params[:priority] : 'asc'
     end
 end
