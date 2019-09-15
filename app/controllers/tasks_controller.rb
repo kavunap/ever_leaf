@@ -1,10 +1,17 @@
 class TasksController < ApplicationController
-  helper_method :sort_direction
+  helper_method :sort_priority
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   def index
-    @tasks = Task.all.order("end_date DESC")
+    @tasks = Task.all.order("created_at DESC")
+    # if params[:sort] == 'name'
+    #   @tasks = Task.all.order("form_name #{sort_priority}")
+    # elsif params[:sort] == 'priority'
+    #   @tasks = Task.all.order("priority #{sort_priority}")
+    # else
+    #   @tasks = Task.all
+    # end
   end
 
   # GET /tasks/1
@@ -56,7 +63,7 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :user_id)
     end
-    def sort_direction
+    def sort_priority
       %w[asc desc].include?(params[:priority]) ? params[:priority] : 'asc'
     end
 end

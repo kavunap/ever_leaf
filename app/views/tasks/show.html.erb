@@ -37,3 +37,12 @@
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
+<div class="row">
+  <div class="columns large-12">
+    <ul class="button-group">
+      Sort by: &nbsp;
+      <li><%= sortable 'Form', 'name', 'asc' %></li>
+      <li><%= sortable 'sort priority', 'priority', 'desc' %></li>
+    </ul>
+  </div>
+</Div>

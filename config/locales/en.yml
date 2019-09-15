@@ -31,5 +31,21 @@
 
 
 
+# en:
+#   hello: "Hello world"
+# en:
+#   view:
+#     sample: Sample
 en:
-  hello: "Hello world"
+  view:
+    sample: Sample
+  # dates:
+  #   order: [ !ruby/symbol day, !ruby/symbol month, !ruby/symbol year ]
+  #     formats:
+  #       default: "%Y-%m-%d"
+  #       short: "%b %d"
+  #       long: "%B %d, %Y"
+  #       date_month_year_concise: '%m/%d/%y'
+  #     day_names: [Ponedjeljak, Utorak, Srijeda, Cetvrtak, Petak, Subota, Nedjelja]
+  #     month_names: [~, Januar, Februar, Mart, April, Maj, Juni, Juli, August, Septembar, Oktobar, Novembar, Decembar]
+  
