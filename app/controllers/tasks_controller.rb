@@ -4,14 +4,12 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all.order("created_at DESC")
-    # if params[:sort] == 'name'
-    #   @tasks = Task.all.order("form_name #{sort_priority}")
-    # elsif params[:sort] == 'priority'
-    #   @tasks = Task.all.order("priority #{sort_priority}")
-    # else
-    #   @tasks = Task.all
-    # end
+    #@tasks = Task.all.order("created_at DESC")
+    if params[:search]
+      @tasks = Task.search(params[:search]).order("created_at DESC")
+    else
+      @tasks = Task.all.order('created_at DESC')
+    end
   end
 
   # GET /tasks/1

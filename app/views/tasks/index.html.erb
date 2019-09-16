@@ -33,6 +33,18 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to t('tasks.new'), tasks_path %>
+
+<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search tasks" %>
+  
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% if @tasks.present? == false %>
+ 
+  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>
+
 
 

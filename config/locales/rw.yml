@@ -1,6 +1,8 @@
 rw:
-  view:
-    country: Rwanda
+  key:
+    country: Hello
+  task:
+    name: Amazina
 
   date:
     order: [ !ruby/symbol day, !ruby/symbol month, !ruby/symbol year ]
@@ -11,6 +13,7 @@ rw:
         date_month_year_concise: '%m/%d/%y'
       day_names: [Ponedjeljak, Utorak, Srijeda, Cetvrtak, Petak, Subota, Nedjelja]
       month_names: [~, Januar, Februar, Mart, April, Maj, Juni, Juli, August, Septembar, Oktobar, Novembar, Decembar]
+      
 
   # (...)
   # date:
@@ -19,5 +22,5 @@ rw:
   #     - :month
   #     - :year
   # (...)
-      
+    
         
