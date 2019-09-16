@@ -4,5 +4,7 @@ class Task < ApplicationRecord
   def self.search(search)
     # Title is for the above case, the OP incorrectly had 'name'
     where("name ILIKE ?", "%#{search}%")
+  paginates_per 2
+  max_paginates_per 5
   end
 end

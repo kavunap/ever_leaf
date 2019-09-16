@@ -1,10 +1,13 @@
 sw:
+  view:
+    sample: Murakaza neza
+  
+  tasks:
+    new: "Andika Umukoro"
   activerecord:
     errors:
       messages:
         record_invalid: 'Uhalalishaji umeshindikana: %{errors}'
-  tasks:
-    new: 'Injiza'
   date:
     abbr_day_names:
     - J2

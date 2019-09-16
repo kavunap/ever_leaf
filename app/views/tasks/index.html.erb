@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<%= t('view.sample') %>
 <h1>Tasks</h1>
+
 <table>
   <thead>
     <tr>
@@ -33,8 +34,7 @@
 
 <br>
 
-<%= link_to t('tasks.new'), tasks_path %>
-
+<%= link_to t('tasks.new'), new_task_path %>
 <%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search tasks" %>
   
@@ -45,6 +45,8 @@
  
   <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
 <% end %>
+
+
 
 
 
