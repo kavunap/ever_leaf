@@ -24,7 +24,7 @@ RSpec.feature "Task management function", type: :feature do
     fill_in  'Content' ,  with: 'ruby task' 
 
     # Click_on a button with a value (notation letter) of “Register”
-    click_on  'Create'
+    click_on  'Unda'
 
     # Check if the information that is supposed to be registered by click is displayed on the task detail page
     # (Assumption that transition to the task details screen will be made if the task is registered)
@@ -32,12 +32,33 @@ RSpec.feature "Task management function", type: :feature do
   end
 
   scenario "Test task details" do
-
+    @task = Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    visit task_path(id: @task.id)
+    expect(page).to have_content('test_task_01')
+    expect(page).to have_content('testtesttest')
   end
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
     Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
     Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
-    Task.order('created_at')
+    @task = Task.order('created_at ASC')
+    
+  end
+  scenario "Test task updating" do
+    task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    visit edit_task_path(id: task1.id)
+    fill_in 'Name', with: 'name update'
+    fill_in 'Content', with: 'task update'
+    click_on 'Sasaisha'
+    visit tasks_path
+    expect(page).to have_content('name update')
+    expect(page).to have_content('task update')
+  end
+  scenario 'Test Task Deletion' do
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    visit tasks_path
+    expect(page).to have_content('testtesttest')
+    click_on 'Destroy'
+    expect(page).not_to have_content('testtesttest')
   end
 end

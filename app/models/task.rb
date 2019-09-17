@@ -3,8 +3,8 @@ class Task < ApplicationRecord
   validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
   def self.search(search)
     # Title is for the above case, the OP incorrectly had 'name'
-    where("name ILIKE ?", "%#{search}%")
-  paginates_per 2
-  max_paginates_per 5
+    where("status ILIKE ?", "%#{search}%")
+    
   end
+  paginates_per 2
 end

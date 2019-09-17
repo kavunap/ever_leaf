@@ -6,10 +6,10 @@ class TasksController < ApplicationController
   def index
     #@tasks = Task.all.order("created_at DESC")
     if params[:search]
-      @tasks = Task.search(params[:search]).order("created_at DESC")
+      @tasks = Task.search(params[:search]).order("created_at DESC").page params[:page]
     else
-      @tasks = Task.all.order('created_at DESC').page params[:page]
-      #@posts = @posts.order(created_at: :desc).paginate(page:params[:page], per_page: 2 )
+      #@tasks = Task.order(:created_at).page(params[:page])
+      @tasks = Task.order(:created_at).page params[:page]
     end
   end
 

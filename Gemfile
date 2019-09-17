@@ -7,6 +7,8 @@ ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 gem 'rails-i18n'
 gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0', '>= 3.0.1'
+gem 'devise'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
