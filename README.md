@@ -1,11 +1,14 @@
 user table
+
 column      | data_type
 -----       | ---------
 id          | integer
 name        | string
 email       | string
 password    | string
-task table
+
+task table 
+
 column      | data_type
 ------------| ---------
  uSer_id(fk)| integer
@@ -14,8 +17,10 @@ column      | data_type
  start_date | date
  end_date   | date
  status     | string
- priority   | string
-Label table
+ priority   | string 
+ 
+Label table 
+
 column      | data_type
 ------------|  ---------
 user_id     | integer
