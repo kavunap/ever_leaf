@@ -4,7 +4,7 @@
 
 <p id="notice"><%= notice %></p>
 <%= t('view.sample') %>
-
+<%= paginate @tasks %>
 <center><h1>Tasks</h1></center>
 
 <table class = "table-bordered" style = "margin-left:10%;">
@@ -17,6 +17,7 @@
       <th>Priority</th>
       <th>Start date</th>
       <th>End date</th>
+      <th>User</th>
       <th colspan="3"> More Actions</th>
     </tr>
   </thead>
@@ -30,9 +31,12 @@
         <td><%= task.priority %></td>
         <td><%= task.start_date %></td>
         <td><%= task.end_date %></td>
+        <td><%= task.user.name %></td>
         <td><%= link_to 'Show', task, class: "btn btn-info" %></td>
+        <% if post.user == current_user %>
         <td><%= link_to 'Edit', edit_task_path(task), class: "btn btn-info" %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% end %>
       </tr></p>
     <% end %>
   </tbody>
@@ -43,12 +47,31 @@
 <%= link_to t('tasks.new'), new_task_path, class: "btn btn-info" %>
 </center>
 <%= paginate @tasks %>
-<% if @tasks.present? == false %>
- 
-  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
-<% end %>
 
 
+<div class="small-12 large-12 columns">
+
+  <h1>Posts</h1>
+  <p class="grey">What's going on in the Boone community...</p>
+  <hr/>
+  <br/>
+
+  
+     
+
+    <div class="columns large-10 left">
+      <span>Sort Tasks By:</span> &nbsp;
+      <ul class="button-group sorter">
+        <li><%= sortable 'Start Date', 'start_date', action_name %></li>
+        <li><%= sortable 'Content', 'content', action_name %></li>
+        <li><%= sortable 'Status', 'status', action_name %></li>
+      </ul>
+    </div>
+  </div>
+
+  <br/><br/><br/><br/><br/><br/><br/><br/>
+
+  
 
 
 

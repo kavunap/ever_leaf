@@ -1,17 +1,28 @@
-* models with their columns and datatypes
-1. User
-  1. id: integer
-  2. name: text
-  3. type: string
-  4. email: string
-2. Task
-  1. id: integer
-  2. name: string
-  3. content: text
-  4. user_id: integer
-  5. status: string
-  6. priority: integer
-  7. start_date: timedate
-  8. end_date: timedate
+user table
+column      | data_type
+-----       | ---------
+id          | integer
+name        | string
+email       | string
+password    | string
+task table
+column      | data_type
+------------| ---------
+ uSer_id(fk)| integer
+ name       | string
+ content    | text
+ start_date | date
+ end_date   | date
+ status     | string
+ priority   | string
+Label table
+column      | data_type
+------------|  ---------
+user_id     | integer
+task_id     | integer
+content     | text
+
+
+
 
 

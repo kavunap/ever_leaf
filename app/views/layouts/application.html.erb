@@ -12,7 +12,7 @@
 
   <body style = "margin-left:5%;margin-right:5%;">
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+  <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -26,17 +26,11 @@
         
         <%= submit_tag "Search" %>
       <% end %>
+      <% if @tasks.present? == false %>
+      <p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
+      <% end %>
       </li>
-      <li class="nav-item active">
-      <%= link_to 'Home', root_path, class: "btn btn-primary " %>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-      <% if user_signed_in? %>
+      <% if current_user? %>
       <li class="nav-item">
       <%= link_to 'Sign Out', destroy_user_session_path, class: "btn btn-danger ", method: :delete %>
       <%= link_to 'See favorite posts', favorites_path, class: "btn btn-info " %>
@@ -55,6 +49,16 @@
         
       </li>
       <% end %>
+      <li class="nav-item active">
+      <%= link_to 'Home', root_path, class: "btn btn-primary " %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+      
     </ul>
     </nav>
     <p class="notice"><%= notice %></p>

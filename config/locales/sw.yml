@@ -1,9 +1,12 @@
 sw:
   view:
     sample: Murakaza neza
+
   
+      
   tasks:
     new: "Andika Umukoro"
+    success: "Task yongeweho!"
   activerecord:
     errors:
       messages:
