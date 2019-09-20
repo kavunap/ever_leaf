@@ -46,10 +46,17 @@
 
 <div >
 <h3>Sort By</h3><hr>
-<%= link_to "name", tasks_path(sort_by: "name"),class:'btn btn-primary' %>
-<%= link_to "end_date", tasks_path(sort_by: "end_date"),class:'btn btn-danger' %>
-<%= link_to "priority", tasks_path(sort_by: "priority"),class:'btn btn-danger' %>
-
+<ol>
+<li>
+<%= link_to "name", tasks_path(sort_by: "name"),class:'btn btn-light' %>
+</li>
+<li>
+<%= link_to "end_date", tasks_path(sort_by: "end_date"),class:'btn btn-light' %>
+</li>
+<li>
+<%= link_to "priority", tasks_path(sort_by: "priority"),class:'btn btn-light' %>
+</li>
+</ol>
   <br/><br/><br/><br/><br/><br/><br/><br/>
 </div>
 
