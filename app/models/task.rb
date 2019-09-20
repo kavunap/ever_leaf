@@ -6,6 +6,6 @@ class Task < ApplicationRecord
     where("status ILIKE ?", "%#{search}%")
     
   end
-  paginates_per 3
+  paginates_per 2
   #belongs_to :user
 end

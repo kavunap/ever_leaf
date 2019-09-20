@@ -30,27 +30,26 @@
       <p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
       <% end %>
       </li>
-      <% if current_user? %>
-      <li class="nav-item">
-      <%= link_to 'Sign Out', destroy_user_session_path, class: "btn btn-danger ", method: :delete %>
-      <%= link_to 'See favorite posts', favorites_path, class: "btn btn-info " %>
-      </li>
-      <% else%>
-      <li class="nav-item">
-        <%= link_to 'sign_up', new_user_registration_path, class: "btn btn-info " %>
-      </li>
-      <li class="nav-item">
-        <i class="fas fa-cloud"></i>
-        <%= link_to 'sign_in', new_user_session_path, class: "btn btn-primary " %>
-      </li>
+      <% if current_user %>
+        Logged in as <%= current_user.email %>.
+        <%= link_to "Log Out", logout_path %>
+      <% else %>
+        <%= link_to "Sign Up", signup_path %> or
+        <%= link_to "Log In", login_path %>
+      <% end %>
+      
       </li>
       <li class="nav-item">
         <i class="fas fa-cloud"></i>
         
       </li>
-      <% end %>
       <li class="nav-item active">
       <%= link_to 'Home', root_path, class: "btn btn-primary " %>
+      <% if current_user && current_user.user_type == 'admin' %>
+      <li class="nav-item">
+      <%= link_to 'Users', dashboard_path, class: "btn btn-primary " %>
+      </li>
+      <% end %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
@@ -61,6 +60,7 @@
       
     </ul>
     </nav>
+    <br><br><br><br><br>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
@@ -76,7 +76,6 @@
           <div class="footer-copyright text-center py-3">© 2019 Copyright:
             <a href="#"> DiveIntoCode.com</a>
           </div>
-
 
         </footer>
   </body>

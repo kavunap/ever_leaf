@@ -48,11 +48,11 @@ RSpec.feature "Task management function", type: :feature do
     task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
     visit edit_task_path(id: task1.id)
     fill_in 'Name', with: 'name update'
-    fill_in 'Content', with: 'task update'
+    fill_in 'Content', with: 'content update'
     click_on 'Sasaisha'
     visit tasks_path
     expect(page).to have_content('name update')
-    expect(page).to have_content('task update')
+    expect(page).to have_content('content update')
   end
   scenario 'Test Task Deletion' do
     Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
