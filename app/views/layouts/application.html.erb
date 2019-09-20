@@ -25,17 +25,18 @@
         <%= text_field_tag :search, params[:search], placeholder: "Search tasks" %>
         
         <%= submit_tag "Search" %>
-      <% end %>
+      
       <% if @tasks.present? == false %>
       <p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
+      <% end %>
       <% end %>
       </li>
       <% if current_user %>
         Logged in as <%= current_user.email %>.
-        <%= link_to "Log Out", logout_path %>
+        <%= link_to "Log Out", logout_path, class: 'btn btn-danger' %>
       <% else %>
-        <%= link_to "Sign Up", signup_path %> or
-        <%= link_to "Log In", login_path %>
+        <%= link_to "Sign Up", signup_path, class: 'btn btn-success' %> or
+        <%= link_to "Log In", login_path, class: 'btn btn-success' %>
       <% end %>
       
       </li>
