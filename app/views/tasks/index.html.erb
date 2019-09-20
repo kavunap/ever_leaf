@@ -44,28 +44,14 @@
 </center>
 <%= paginate @tasks %>
 
-
-<div class="small-12 large-12 columns">
-
-  <h1>Posts</h1>
-  <p class="grey">What's going on in the Boone community...</p>
-  <hr/>
-  <br/>
-
-  
-     
-
-    <div class="columns large-10 left">
-      <span>Sort Tasks By:</span> &nbsp;
-      <ul class="button-group sorter">
-        <li><%= sortable 'Start Date', 'start_date', action_name %></li>
-        <li><%= sortable 'Content', 'content', action_name %></li>
-        <li><%= sortable 'Status', 'status', action_name %></li>
-      </ul>
-    </div>
-  </div>
+<div >
+<h3>Sort By</h3><hr>
+<%= link_to "name", tasks_path(sort_by: "name"),class:'btn btn-primary' %>
+<%= link_to "end_date", tasks_path(sort_by: "end_date"),class:'btn btn-danger' %>
+<%= link_to "priority", tasks_path(sort_by: "priority"),class:'btn btn-danger' %>
 
   <br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
 
   
 
