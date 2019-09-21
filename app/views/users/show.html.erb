@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<p> <h2>User Details</h2>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -14,12 +14,15 @@
   <strong>User type:</strong>
   <%= @user.user_type %>
 </p>
+<p> <h2> Tasks Submitted By This User</h2>
 <% @user.tasks.each do |task| %>
 <ul>
 <li>
-<%= @user.tasks(task.id).name %>
+  Name:<%= task.name + '       ' %> <br/>Content:<%= task.content %>
 </li>
 </ul>
+  
 <% end %>
+</p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
