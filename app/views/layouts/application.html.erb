@@ -48,7 +48,7 @@
       <%= link_to 'Home', root_path, class: "btn btn-primary " %>
       <% if current_user && current_user.user_type == 'admin' %>
       <li class="nav-item">
-      <%= link_to 'Users', dashboard_path, class: "btn btn-primary " %>
+      <%= link_to 'Users', users_path, class: "btn btn-primary " %>
       </li>
       <% end %>
       </li>

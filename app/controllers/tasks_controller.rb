@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column
-  before_action :authorize, only: [:edit, :update, :destroy]
+  before_action :authorize, only: [:new, :edit, :update, :destroy]
   # GET /tasks
   def index
     #@tasks = Task.all.order("created_at DESC")
@@ -34,6 +34,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @task.user_id = current_user.id
   end
 
   # GET /tasks/1/edit
@@ -43,7 +44,7 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     @task = Task.new(task_params)
-
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_url, notice: t('tasks.success')
     else

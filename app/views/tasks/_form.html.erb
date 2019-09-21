@@ -43,7 +43,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
   
-    <%= form.hidden_field :user_id %>
+    <%= form.hidden_field :user_id, value: 'current_user.id' %>
   </div>
   <div class="actions">
     <%= form.submit %>

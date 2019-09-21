@@ -17,12 +17,15 @@
       <th>Priority</th>
       <th>Start date</th>
       <th>End date</th>
+      <th>User</th>
       <th colspan="3"> More Actions</th>
     </tr>
   </thead>
 
   <tbody>
+  
     <% @tasks.each do |task| %>
+      <%  if task.user == current_user %>
       <tr class = "table table-active">
         <td><%= task.name %></td>
         <td><%= task.content %></td>
@@ -30,10 +33,12 @@
         <td><%= task.priority %></td>
         <td><%= task.start_date %></td>
         <td><%= task.end_date %></td>
+        <td><%= task.user.name %></td>
         <td><%= link_to 'Show', task, class: "btn btn-info" %></td>
         <td><%= link_to 'Edit', edit_task_path(task), class: "btn btn-info" %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr></p>
+      <% end %>
     <% end %>
   </tbody>
 </table>
