@@ -55,7 +55,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to tasks_url, notice: 'Task was successfully updated.'
+      redirect_to tasks_url, notice: 'tasks.update'
     else
       render :edit
     end
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+    redirect_to tasks_url, notice: 'tasks.destroy'
   end
 
   private

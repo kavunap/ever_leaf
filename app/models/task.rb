@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :labels
   validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
   def self.search(search)
     # Title is for the above case, the OP incorrectly had 'name'

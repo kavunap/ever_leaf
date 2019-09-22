@@ -26,13 +26,13 @@
         
         <%= submit_tag "Search" %>
       
-      <% if @tasks.present? == false %>
+      <% if params[:search] && @tasks.present? == false %>
       <p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
       <% end %>
       <% end %>
       </li>
       <% if current_user %>
-        Logged in as <%= current_user.email %>.
+        Logged in as <%= current_user.name %>.
         <%= link_to "Log Out", logout_path, class: 'btn btn-danger' %>
       <% else %>
         <%= link_to "Sign Up", signup_path, class: 'btn btn-success' %> or
@@ -63,7 +63,7 @@
     </nav>
     <br><br><br><br><br>
     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
     <%= yield %>
     <footer class="page-footer font-small blue pt-4 fixed-bottom bg-info">
 

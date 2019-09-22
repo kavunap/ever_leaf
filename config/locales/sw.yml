@@ -6,7 +6,20 @@ sw:
       
   tasks:
     new: "Andika Umukoro"
-    success: "Task yongeweho!"
+    success: "Task yongeweho neza!"
+    update: "Task yahinduwe neza!"
+    destroy: "Task yakuweho neza!"
+    title: "Izina rya Task"
+    content: "Ibigize Task"
+    status: "Status ya Task"
+    priority: "priotite ya Task"
+    start: "Igihe yatangiriye"
+    end: "Igihe izarangirira"
+    user: "Uwayishyizeho"
+    actions: "Ibindi wakora"
+    edit: "Guhindura"
+    back: "Subira ahabanza"
+
   activerecord:
     errors:
       messages:
