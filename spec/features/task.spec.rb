@@ -73,8 +73,8 @@ RSpec.feature "Task management function", type: :feature do
     expect(page).not_to have_content('testtesttest')
   end
   scenario 'Test Task validation' do
-    task = Task.create!(name: 'test_task_01', content: '', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    expect(task).not_to be_valid
+    task = Task.create!(name: 'test_task_01', content: 'content1', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    expect(task).to be_valid
   end
 
 end

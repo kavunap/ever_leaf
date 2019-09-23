@@ -31,13 +31,7 @@
       <% end %>
       <% end %>
       </li>
-      <% if current_user %>
-        Logged in as <%= current_user.name %>.
-        <%= link_to "Log Out", logout_path, class: 'btn btn-danger' %>
-      <% else %>
-        <%= link_to "Sign Up", signup_path, class: 'btn btn-success' %> or
-        <%= link_to "Log In", login_path, class: 'btn btn-success' %>
-      <% end %>
+      
       
       </li>
       <li class="nav-item">
@@ -46,11 +40,6 @@
       </li>
       <li class="nav-item active">
       <%= link_to 'Home', root_path, class: "btn btn-primary " %>
-      <% if current_user && current_user.user_type == 'admin' %>
-      <li class="nav-item">
-      <%= link_to 'Users', users_path, class: "btn btn-primary " %>
-      </li>
-      <% end %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
