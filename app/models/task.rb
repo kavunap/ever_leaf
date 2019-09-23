@@ -10,8 +10,8 @@ class Task < ApplicationRecord
   paginates_per 2
   #belongs_to :user
   def self.order_list(sort_order)
-    if sort_order == "name"
-      order(name: :desc)
+    if sort_order == "created_at"
+      order(created_at: :asc)
     elsif sort_order == "end_date"
       order(end_date: :desc)
     elsif sort_order == "priority"

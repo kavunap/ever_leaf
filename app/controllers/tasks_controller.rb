@@ -12,18 +12,18 @@ class TasksController < ApplicationController
       @tasks = Task.order_list(params[:sort_by]).page params[:page]
     end
 
-    case params[:sort]
-    when 'start_date'
-      @tasks = Task.where(['start_date = ? or start_date > ?', DateTime.now, DateTime.now]).order('start_date asc')
-        .order(:start_date).paginate(:page => params[:page], :per_page => 2)
-    when 'content'
-      @tasks = Task.where(['start_date = ? or start_date > ?', DateTime.now, DateTime.now]).order('content asc')
-        .order(:start_date).paginate(:page => params[:page], :per_page => 2)
-    when 'status'
-    #else
-      @tasks = Task.where(['start_date = ? or start_date > ?', DateTime.now, DateTime.now]).order('status asc')
-      .paginate(:page => params[:page], :per_page => 2)
-    end
+    # case params[:sort]
+    # when 'start_date'
+    #   @tasks = Task.where(['start_date = ? or start_date > ?', DateTime.now, DateTime.now]).order('created_at DESC')
+    #     .order(:start_date).paginate(:page => params[:page], :per_page => 2)
+    # when 'content'
+    #   @tasks = Task.where(['start_date = ? or start_date > ?', DateTime.now, DateTime.now]).order('content DESC')
+    #     .order(:start_date).paginate(:page => params[:page], :per_page => 2)
+    # when 'status'
+    # #else
+    #   @tasks = Task.where(['start_date = ? or start_date > ?', DateTime.now, DateTime.now]).order('status DESC')
+    #   .paginate(:page => params[:page], :per_page => 2)
+    # end
 
   end
 
