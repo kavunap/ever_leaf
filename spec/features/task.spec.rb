@@ -52,7 +52,8 @@ RSpec.feature "Task management function", type: :feature do
   scenario "Test whether tasks are arranged in descending order of creation date" do
     Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
     Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
-    @task = Task.order('created_at DESC')
+    task = Task.order('created_at DESC')
+    
     
   end
   scenario "Test task updating" do
