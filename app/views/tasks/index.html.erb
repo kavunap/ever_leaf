@@ -1,9 +1,5 @@
 
-
-  
-
 <p id="notice"><%= notice %></p>
-<%= t('view.sample') %>
 <%= paginate @tasks %>
 <center><h1>Tasks</h1></center>
 
@@ -18,7 +14,7 @@
       <th><%= t('tasks.start') %></th>
       <th><%= t('tasks.end') %></th>
       <th><%= t('tasks.user') %></th>
-      <th colspan="3"> More Actions</th>
+      <th colspan="3"><%= t('tasks.actions') %></th>
     </tr>
   </thead>
 

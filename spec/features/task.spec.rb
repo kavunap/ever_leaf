@@ -5,8 +5,19 @@ require 'rails_helper'
 RSpec.feature "Task management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
   scenario "Test task list" do
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
-    Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    # visit  signup_path
+    # fill_in  'Name' ,  with: 'new'
+    # fill_in  'Email' ,  with: 'Foo@gmail.Com'
+    # fill_in  'Password' ,  with: '123456'
+    # #fill_in  'ConfirmationPassword' ,  with: '123456'
+    # click_on  'Create'
+    User.create!(name: 'kavuna', email: 'kavuna@gmail.com', password: '123456')
+    visit  login_path
+    fill_in  'Email' ,  with: 'kavuna@gmail.com'
+    fill_in  'Password' ,  with: '123456'
+    click_on  'Login'
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
     visit tasks_path
     save_and_open_page
     expect(page).to have_content 'testtesttest'
@@ -32,20 +43,20 @@ RSpec.feature "Task management function", type: :feature do
   end
 
   scenario "Test task details" do
-    @task = Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    @task = Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
     visit task_path(id: @task.id)
     expect(page).to have_content('test_task_01')
     expect(page).to have_content('testtesttest')
   end
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
-    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
     @task = Task.order('created_at DESC')
     
   end
   scenario "Test task updating" do
-    task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
     visit edit_task_path(id: task1.id)
     fill_in 'Name', with: 'name update'
     fill_in 'Content', with: 'content update'
@@ -55,10 +66,15 @@ RSpec.feature "Task management function", type: :feature do
     expect(page).to have_content('content update')
   end
   scenario 'Test Task Deletion' do
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
     visit tasks_path
     expect(page).to have_content('testtesttest')
     click_on 'Destroy'
     expect(page).not_to have_content('testtesttest')
   end
+  scenario 'Test Task validation' do
+    task = Task.create!(name: 'test_task_01', content: '', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    expect(task).not_to be_valid
+  end
+
 end
