@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column
-  before_action :authorize, only: [:edit, :update, :destroy]
+  #before_action :authorize, only: [:edit, :update, :destroy]
   # GET /tasks
   def index
     #@tasks = Task.all.order("created_at DESC")
@@ -9,7 +8,7 @@ class TasksController < ApplicationController
       @tasks = Task.search(params[:search]).order("created_at DESC").page params[:page]
     else
       #@tasks = Task.order(:created_at).page(params[:page])
-      @tasks = Task.order_list(params[:sort_by]).page params[:page]
+      @tasks = Task.order('created_at desc').page params[:page]
     end
 
     # case params[:sort]
@@ -34,7 +33,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    @task.user_id = current_user.id
+    #@task.user_id = current_user.id
   end
 
   # GET /tasks/1/edit
@@ -44,7 +43,7 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     @task = Task.new(task_params)
-    @task.user_id = current_user.id
+    #@task.user_id = current_user.id
     if @task.save
       redirect_to tasks_url, notice: t('tasks.success')
     else
@@ -75,14 +74,12 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :user_id)
+      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date)
     end
     # def sort_priority
     #   %w[asc desc].include?(params[:priority]) ? params[:priority] : 'asc'
     # end
-    def sort_column
-      params[:sort] if params[:sort]
-    end
+    
 
     # def is_signed_in?
     #   if !user_signed_in?
