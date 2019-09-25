@@ -74,7 +74,7 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :user_id)
+      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date)
     end
     # def sort_priority
     #   %w[asc desc].include?(params[:priority]) ? params[:priority] : 'asc'
