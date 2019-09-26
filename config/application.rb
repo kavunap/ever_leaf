@@ -26,7 +26,7 @@ module EverLeaf
                        controller_specs: false,
                        request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
-      config.i18n.default_locale = :rw
+      config.i18n.default_locale = :en
     end
   end
 
