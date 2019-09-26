@@ -71,5 +71,11 @@ RSpec.feature "Task management function", type: :feature do
     task = Task.create!(name: 'test_task_01', content: 'content1', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
     expect(task).to be_valid
   end
+  scenario "Test whether tasks are arranged in descending order of deadline" do
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
+    task = Task.order('end_date DESC')
+        
+  end
 
 end

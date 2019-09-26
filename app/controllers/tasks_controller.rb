@@ -6,9 +6,12 @@ class TasksController < ApplicationController
     #@tasks = Task.all.order("created_at DESC")
     if params[:search]
       @tasks = Task.search(params[:search]).order("created_at DESC").page params[:page]
+    # elsif params [:term]
+    #   #@tasks = Task.order(:created_at).page(params[:page])
+    #   @tasks = Task.order_list(params[:sort_by]).page params[:page]
     else
-      #@tasks = Task.order(:created_at).page(params[:page])
-      @tasks = Task.order('created_at desc').page params[:page]
+      #@tasks = Task.order('created_at DESC').page params[:page]
+      @tasks = Task.order_list(params[:sort_by]).page params[:page]
     end
 
    

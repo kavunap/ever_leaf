@@ -11,7 +11,7 @@ class Task < ApplicationRecord
   #belongs_to :user
   def self.order_list(sort_order)
     if sort_order == "created_at"
-      order(created_at: :asc)
+      order(created_at: :desc)
     elsif sort_order == "end_date"
       order(end_date: :desc)
     elsif sort_order == "priority"
