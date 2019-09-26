@@ -5,23 +5,33 @@ require 'rails_helper'
 RSpec.feature "Task management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
   scenario "Test task list" do
-    # visit  signup_path
-    # fill_in  'Name' ,  with: 'new'
-    # fill_in  'Email' ,  with: 'Foo@gmail.Com'
-    # fill_in  'Password' ,  with: '123456'
-    # #fill_in  'ConfirmationPassword' ,  with: '123456'
-    # click_on  'Create'
-    User.create!(name: 'kavuna', email: 'kavuna@gmail.com', password: '123456')
+    
+    visit  signup_path
+    fill_in  'Name' ,  with: 'new'
+    fill_in  'Email' ,  with: 'Foo@gmail.Com'
+    fill_in  'Password' ,  with: '123456'
+    #fill_in  'Password_confirmation' ,  with: '123456'
+    click_on  'signup'
+    #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', password: '123456')
     visit  login_path
-    fill_in  'Email' ,  with: 'kavuna@gmail.com'
+    fill_in  'Email' ,  with: 'Foo@gmail.Com'
     fill_in  'Password' ,  with: '123456'
     click_on  'Login'
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
+    click_on 'Home'
+    click_on 'Andika Umukoro'
+    fill_in  'Name' ,  with: 'task1'
+    fill_in  'Content' ,  with: 'content1'
+    fill_in  'Status' ,  with: 'status1'
+    fill_in  'Priority' ,  with: 'high'
+    # fill_in  'Startdate' ,  with: '26.9.2019'
+    # fill_in  'End date' ,  with: '27.9.2019'
+    click_on  'Unda'
+    # Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    # Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
     visit tasks_path
-    save_and_open_page
-    expect(page).to have_content 'testtesttest'
-    expect(page).to have_content 'samplesample'
+    #save_and_open_page
+    expect(page).to have_content 'task1'
+    expect(page).to have_content 'content1'
   end
 
   scenario "Test task creation" do
