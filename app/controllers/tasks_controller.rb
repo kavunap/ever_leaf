@@ -25,8 +25,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
-    #@task.user_id = current_user.id
+    @task = current_user.tasks.build
+    @task.user_id = current_user.id
   end
 
   # GET /tasks/1/edit
@@ -35,8 +35,8 @@ class TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = Task.new(task_params)
-    #@task.user_id = current_user.id
+    @task = current_user.tasks.build(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_url, notice: t('tasks.success')
     else
