@@ -41,6 +41,17 @@
       <li class="nav-item active">
       <%= link_to 'Home', root_path, class: "btn btn-primary " %>
       </li>
+      <% if current_user %>
+      <li class="nav-item active">
+      <%= link_to 'signout', logout_path, class: "btn btn-primary " %>
+      </li>
+      <% else %>
+      <li class="nav-item active">
+      <%= link_to 'Login', login_path, class: "btn btn-primary " %>
+      </li><li class="nav-item active">
+      <%= link_to 'Signup', signup_path, class: "btn btn-primary " %>
+      </li>
+      <% end%>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>
