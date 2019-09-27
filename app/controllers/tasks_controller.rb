@@ -12,6 +12,7 @@ class TasksController < ApplicationController
     else
       #@tasks = Task.order('created_at DESC').page params[:page]
       @tasks = Task.order_list(params[:sort_by]).page params[:page]
+      
     end
 
    
