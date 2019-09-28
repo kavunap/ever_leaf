@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  #before_action :authorize, only: [:edit, :update, :destroy]
+  before_action :authorize, except: [:index]
   # GET /tasks
   def index
-    #@tasks = Task.all.order("created_at DESC")
+    @tasks = Task.all.order("created_at DESC")
     if params[:search]
       @tasks = Task.search(params[:search]).order("created_at DESC").page params[:page]
     # elsif params [:term]
@@ -14,7 +14,8 @@ class TasksController < ApplicationController
       @tasks = Task.order_list(params[:sort_by]).page params[:page]
       
     end
-
+    # @search = Task.search(params[:q])
+    # @tasks = @search.result
    
 
   end

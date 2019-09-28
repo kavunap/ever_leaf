@@ -91,9 +91,14 @@ RSpec.feature "Task management function", type: :feature do
       fill_in  'Content' ,  with: 'content2'
       fill_in  'Status' ,  with: 'status2'
       fill_in  'Priority' ,  with: 'Priority2'
+      #fill_in  'End date' ,  with: '10.2.2019'
       click_on 'Unda'
-    task = Task.order('end_date DESC')
-
+      @task = Task.first
+      @task_newest = Task.last
+      @task_newest.end_date = '10.10.2020'
+      @task_newest.save
+      #Task.order('created_at desc').all.expect == [@task_newest, @email]
+      task  = Task.order('end_date desc').all
+    expect(task).to eq([@task_newest, @task])
   end
-
 end
