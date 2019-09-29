@@ -67,9 +67,7 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date)
     end
-    # def sort_priority
-    #   %w[asc desc].include?(params[:priority]) ? params[:priority] : 'asc'
-    # end
+    
     
 
     # def is_signed_in?
