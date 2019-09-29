@@ -5,12 +5,12 @@ class Task < ApplicationRecord
   validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
   def self.search(search)
     # Title is for the above case, the OP incorrectly had 'name'
-    where("status ILIKE ?", "%#{search}%")
+    where("status ILIKE ? OR name ILIKE ?", "%#{search}%", "%#{search}%")
     
   end
   paginates_per 2
   #belongs_to :user
-  def self.order_list(sort_order)
+  def self.order_list(sort_order) 
     if sort_order == "created_at"
       order(created_at: :desc)
     elsif sort_order == "end_date"
@@ -21,4 +21,5 @@ class Task < ApplicationRecord
       order(start_date: :desc)
     end
   end
+  #scope :latest, -> (number = 4){order(created_at: :desc).limit(number)}
 end
