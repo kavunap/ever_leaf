@@ -12,35 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, class: 'font-weight-bolder' %>
     <%= form.text_field :name %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, class: 'font-weight-bolder' %>
     <%= form.text_area :content %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
+    <%= form.label :status, class: 'font-weight-bolder' %>
+    <%= form.select :status, ['Not Started', 'In progress', 'Done'] %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :priority %>
-    <%= form.text_field :priority %>
+    <%= form.label :priority, class: 'font-weight-bolder' %>
+    <%= form.select :name, ['High', 'Low', 'Under'] %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :start_date %>
+    <%= form.label :start_date, class: 'font-weight-bolder' %>
     <%= form.date_select :start_date %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :end_date %>
+    <%= form.label :end_date, class: 'font-weight-bolder' %>
     <%= form.date_select :end_date %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
+  
   <div class="field">
   
     <%= form.hidden_field :user_id, value: 'current_user.id' %>
