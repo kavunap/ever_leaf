@@ -14,8 +14,8 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task1'
       fill_in  'Content' ,  with: 'content1'
-      fill_in  'Status' ,  with: 'status1'
-      fill_in  'Priority' ,  with: 'Priority1'
+      # fill_in  'Status' ,  with: 'status1'
+      # fill_in  'Priority' ,  with: 'Priority1'
       click_on 'Unda'
   end
   scenario "Test task list" do
@@ -79,8 +79,8 @@ RSpec.feature "Task management function", type: :feature do
     visit tasks_path
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task1'
-      fill_in  'Status' ,  with: 'status1'
-      fill_in  'Priority' ,  with: 'Priority1'
+      # fill_in  'Status' ,  with: 'status1'
+      # fill_in  'Priority' ,  with: 'Priority1'
       click_on 'Unda'
       expect(page).to have_content('Content haitakiwi kuwa wazi')
 
@@ -89,8 +89,8 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task2'
       fill_in  'Content' ,  with: 'content2'
-      fill_in  'Status' ,  with: 'status2'
-      fill_in  'Priority' ,  with: 'Priority2'
+      # fill_in  'Status' ,  with: 'status2'
+      # fill_in  'Priority' ,  with: 'Priority2'
       #fill_in  'End date' ,  with: '10.2.2019'
       click_on 'Unda'
       @task = Task.first
@@ -105,8 +105,8 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task2'
       fill_in  'Content' ,  with: 'content2'
-      fill_in  'Status' ,  with: 'status2'
-      fill_in  'Priority' ,  with: 'Priority2'
+      # fill_in  'Status' ,  with: 'status2'
+      # fill_in  'Priority' ,  with: 'Priority2'
       #fill_in  'End date' ,  with: '10.2.2019'
       click_on 'Unda'
       @task = Task.first
