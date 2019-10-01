@@ -5,8 +5,7 @@ class TasksController < ApplicationController
   def index
     #@tasks = Task.all.latest
     if params[:search]
-      @tasks = Task.search(params[:search]).order("created_at DESC").page params[:page]
-    
+      @tasks = Task.search(params[:search],params[:search1],params[:search2] ).order("created_at DESC").page params[:page]
     else
       
       @tasks = Task.order_list(params[:sort_by]).page params[:page]

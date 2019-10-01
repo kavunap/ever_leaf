@@ -3,9 +3,17 @@ class Task < ApplicationRecord
 
   #has_many :labels
   validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
-  def self.search(search)
+  def self.search(search,search1,search2)
+    if search
     # Title is for the above case, the OP incorrectly had 'name'
     where("status ILIKE ? OR name ILIKE ?", "%#{search}%", "%#{search}%")
+    elsif search1
+      where("status ILIKE ?", "%#{search1}%")
+    elsif search2
+        where("name ILIKE ?", "%#{search2}%")
+    else
+      order('created_at desc')
+    end
     
   end
   paginates_per 2
