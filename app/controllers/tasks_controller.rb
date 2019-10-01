@@ -4,14 +4,30 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     #@tasks = Task.all.latest
-    if params[:search]
+    if (params[:search])
+      @tasks = Task.search(params[:search],params[:search1],params[:search2] ).order("created_at DESC").page params[:page]
+    elsif (params[:search])
       @tasks = Task.search(params[:search],params[:search1],params[:search2] ).order("created_at DESC").page params[:page]
     else
       
       @tasks = Task.order_list(params[:sort_by]).page params[:page]
       
     end
-
+    def index
+      @tasks = if params[:term]
+        Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%","%#{params[:term]}%").page params[:page]
+      elsif params[:term1]
+        Task.where('name LIKE ?', "%#{params[:term1]}%").page params[:page]
+      elsif params[:term2]
+        Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
+      else
+        #@tasks = Task.all.order('created_at desc').page params[:page]
+        @tasks = Task.order_list(params[:sort_by]).page params[:page]
+      end
+    end
+    def search
+      @task =task.search(params[:search])
+    end
     
 
   end
@@ -64,7 +80,7 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date)
+      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2)
     end
     
     

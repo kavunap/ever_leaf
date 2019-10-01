@@ -117,4 +117,11 @@ RSpec.feature "Task management function", type: :feature do
       task  = Task.order('end_date desc').all
     expect(task).to eq([@task_newest, @task])
   end
+  scenario "test task search" do
+    visit tasks_path
+    fill_in  'term1' ,  with: 'task1'
+    click_on ' Search'
+    expect(page).to have_content('content1')
+  end
+
 end

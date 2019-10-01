@@ -1,26 +1,18 @@
 
 <%= paginate @tasks %>
-<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search tasks by name and status" %>
-  <%= submit_tag "Search" %>
-<% if params[:search] && @tasks.present? == false %>
-<p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
-<% end %>
-<% end %>
-<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search1], placeholder: "Search tasks by status" %>
-  <%= submit_tag "Search" %>
-<% if params[:search] && @tasks.present? == false %>
-<p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
-<% end %>
-<% end %>
-<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search2], placeholder: "Search tasks by name" %>
-  <%= submit_tag "Search" %>
-<% if params[:search] && @tasks.present? == false %>
-<p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
-<% end %>
-<% end %>
+<%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+  <%= text_field_tag :term1, params[:term1],placeholder:'  search by task name' %>
+  <%= submit_tag ' Search', name: nil %>
+ <% end %>
+ <%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+  <%= text_field_tag :term2, params[:term2],placeholder:'  search by status' %>
+  <%= submit_tag 'Search', name: nil %>
+ <% end %>
+ <%= form_tag(tasks_path, method: :get,style:'') do %>
+  <%= text_field_tag :term, params[:term],placeholder:'  search by both name or status' %>
+  <%= submit_tag 'Search', name: nil %>
+ <% end %><br>
+ 
 <center><h1>Tasks</h1></center>
 
 <table class = "table-bordered" style = "margin-left:10%;">
