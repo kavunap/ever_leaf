@@ -17,7 +17,7 @@
 <p> <h2> Tasks Submitted By This User</h2>
 <% @user.tasks.each do |task| %>
 <ul>
-<li>
+<li class = "user-tasks">
   Name:<%= task.name + '       ' %> <br/>Content:<%= task.content %>
 </li>
 </ul>
@@ -26,3 +26,4 @@
 </p>
 
 <%= link_to 'Back', root_path, class: 'btn btn-info' %>
+<br/><br/><br/><br/><br/><br/><br/><br/>
