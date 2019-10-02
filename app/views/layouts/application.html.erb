@@ -6,6 +6,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+   
+   
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
@@ -36,7 +39,6 @@
       </li>
       <li class="nav-item">
         <i class="fas fa-cloud"></i>
-        
       </li>
       <li class="nav-item active">
       <%= link_to 'Home', root_path, class: "btn btn-primary " %>
@@ -78,7 +80,6 @@
           <div class="footer-copyright text-center py-3">© 2019 Copyright:
             <a href="#"> DiveIntoCode.com</a>
           </div>
-
         </footer>
   </body>
 </html>
