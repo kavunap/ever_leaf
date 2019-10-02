@@ -62,7 +62,7 @@ RSpec.feature "Task management function", type: :feature do
     visit edit_task_path(id: @task.id)
     fill_in 'Name', with: 'name update'
     fill_in 'Content', with: 'content update'
-    click_on 'Sasaisha'
+    click_on 'Unda task'
     visit tasks_path
     expect(page).to have_content('name update')
     expect(page).to have_content('content update')

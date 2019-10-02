@@ -14,34 +14,34 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= form.text_field :name %>
+    <%= form.label :name %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <%= form.text_field :name, class: "field1" %>
   </div>
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="field">
-    <%= form.label :email %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= form.text_field :email %>
+    <%= form.label :email %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <%= form.text_field :email, class: "field1" %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :user_type %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= form.text_field :user_type, disabled: (true unless current_user && current_user.user_type == "admin") %>
+    <%= form.label :user_type %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <%= form.text_field :user_type, disabled: (true unless current_user && current_user.user_type == "admin"), class: "field1" %>
   </div>
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="field">
-    <%= form.label :password %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= form.password_field :password %>
+    <%= form.label :password %>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <%= form.password_field :password, class: "field1" %>
   </div>
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="field">
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: "field1" %>
   </div>
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
