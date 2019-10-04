@@ -44,6 +44,9 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
+  def admin 
+    user = User.all
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

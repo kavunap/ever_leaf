@@ -1,0 +1,69 @@
+
+<%= paginate @tasks %>
+
+<center><h1>Tasks</h1></center>
+
+<table class = "table-bordered" style = "margin-left:10%;">
+
+  <thead class = "table bg-primary">
+    <tr>
+      <th><%= t('tasks.title') %></th>
+      <th><%= t('tasks.content') %></th>
+      <th><%= t('tasks.status') %></th>
+      <th><%= t('tasks.priority') %></th>
+      <th><%= t('tasks.start') %></th>
+      <th><%= t('tasks.end') %></th>
+
+      <th> User</th>
+      <th> Creation Date</th>
+
+      <th colspan="3"><%= t('tasks.actions') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+    <% @tasks.each do |task| %>
+      <tr class = "table table-active">
+        <td><%= task.name %></td>
+        <td><%= task.content %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.start_date %></td>
+        <td><%= task.end_date %></td>
+        <td><%= task.user.name %></td>
+        <td><%= task.created_at %></td>
+        <td><%= link_to 'Show', task, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_task_path(task), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+      </tr></p>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<center>
+<%= link_to t('tasks.new'), new_task_path, class: "btn btn-info" %>
+</center>
+<%= paginate @tasks %>
+
+<div >
+<h3>Sort By</h3><hr>
+<ol>
+<li>
+<%= link_to "Creation date and time", tasks_path(sort_by: "created_at"),class:'btn btn-light' %>
+</li>
+<li>
+<%= link_to "end_date", tasks_path(sort_by: "end_date"),class:'btn btn-light' %>
+</li>
+<li>
+<%= link_to "priority", tasks_path(sort_by: "priority"),class:'btn btn-light' %>
+</li>
+</ol>
+  <br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+
+  
+
+
+
