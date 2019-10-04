@@ -7,13 +7,16 @@ RSpec.feature "Task management function", type: :feature do
   background do
     User.create!(name: "kavuna", email: 'kavuna@gmail.Com', user_type: 'admin',  password: '123456')
     visit  root_path
-    click_on 'Login'
+    #click_on 'Login'
     fill_in  'Email' ,  with: 'kavuna@gmail.Com'
     fill_in  'Password' ,  with: '123456'
-    click_on  'Sign In'
+    click_on  'Login'
+    visit  tasks_path
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task1'
       fill_in  'Content' ,  with: 'content1'
+      fill_in  'Status' ,  with: 'priority1'
+      fill_in  'Priority' ,  with: 'priority1'
       # fill_in  'Status' ,  with: 'status1'
       # fill_in  'Priority' ,  with: 'Priority1'
       click_on 'Unda'
@@ -26,7 +29,7 @@ RSpec.feature "Task management function", type: :feature do
     # #fill_in  'ConfirmationPassword' ,  with: '123456'
     # click_on  'Create'
     
-    visit tasks_path
+    visit root_path
     save_and_open_page
     expect(page).to have_content 'task1'
     expect(page).to have_content 'content1'
@@ -62,7 +65,7 @@ RSpec.feature "Task management function", type: :feature do
     visit edit_task_path(id: @task.id)
     fill_in 'Name', with: 'name update'
     fill_in 'Content', with: 'content update'
-    click_on 'Unda task'
+    click_on 'Sasaisha Task'
     visit tasks_path
     expect(page).to have_content('name update')
     expect(page).to have_content('content update')
@@ -89,6 +92,8 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task2'
       fill_in  'Content' ,  with: 'content2'
+      fill_in  'Status' ,  with: 'priority2'
+      fill_in  'Priority' ,  with: 'priority2'
       # fill_in  'Status' ,  with: 'status2'
       # fill_in  'Priority' ,  with: 'Priority2'
       #fill_in  'End date' ,  with: '10.2.2019'
@@ -105,6 +110,8 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task2'
       fill_in  'Content' ,  with: 'content2'
+      fill_in  'Status' ,  with: 'priority2'
+      fill_in  'Priority' ,  with: 'priority2'
       # fill_in  'Status' ,  with: 'status2'
       # fill_in  'Priority' ,  with: 'Priority2'
       #fill_in  'End date' ,  with: '10.2.2019'
