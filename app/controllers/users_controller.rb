@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user_tasks = Task.order(:created_at).includes(:user)
   end
 
   # GET /users/new

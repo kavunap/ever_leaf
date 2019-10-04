@@ -15,13 +15,14 @@
   <%= @user.user_type %>
 </p>
 <p> <h2> Tasks Submitted By This User</h2>
-<% @user.tasks.each do |task| %>
+<% @user_tasks.each do |task| %>
+ <% if @user.id == task.user_id %>
 <ul>
 <li>
-  Name:<%= task.name + '       ' %> <br/>Content:<%= task.content %>
+  Name:<%= @user.tasks.name + '       ' %> <br/>Content:<%= task.content %>
 </li>
 </ul>
-  
+  <% end %>
 <% end %>
 </p>
 
