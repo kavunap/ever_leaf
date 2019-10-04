@@ -24,15 +24,7 @@
     <ul class="nav navbar-nav ml-auto">
       
       <li class="nav-item">
-      <%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search tasks" %>
-        
-        <%= submit_tag "Search" %>
       
-      <% if params[:search] && @tasks.present? == false %>
-      <p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
-      <% end %>
-      <% end %>
       </li>
       
       
@@ -68,6 +60,7 @@
     <p class="notice"><%= notice %></p>
     
     <%= yield %>
+    <br/><br/><br/><br/><br/>
     <footer class="page-footer font-small blue pt-4 fixed-bottom bg-info">
 
           <div class="container-fluid text-center text-md-left">

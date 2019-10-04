@@ -5,8 +5,11 @@ RSpec.describe Task, type: :model do
    expect(task).not_to be_valid
   end
 
-  it "validation passes If all field are described" do
-    task = Task.new(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    expect(task).to be_valid
+  # # it "validation passes If all field are described" do
+  # #   task = Task.new(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+  # #   expect(task).to be_valid
+  # end
+  scenario "test task search" do
+    Task.all.where('status LIKE ? or name LIKE ?')
   end
 end
