@@ -11,5 +11,5 @@ User.create!(
   user_type: "admin",
   password: "123456",
   password_confirmation: "123456"
-  #watched_on: 5.days.ago
+  #watched_on: 5.days.agogit
 )
