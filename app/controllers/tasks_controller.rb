@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, except: [:index]
+  before_action :authorize
   # GET /tasks
   def index
     #@tasks = Task.all.latest
