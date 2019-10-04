@@ -4,32 +4,30 @@ require 'rails_helper'
 # On the right side of this RSpec.feature, write the test item name like "task management feature" (grouped by do ~ end)
 RSpec.feature "Task management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
-  scenario "Test task list" do
-    
-    visit  signup_path
-    fill_in  'Name' ,  with: 'new'
-    fill_in  'Email' ,  with: 'Foo@gmail.Com'
+  background do
+    User.create!(name: "kavuna", email: 'kavuna@gmail.Com', user_type: 'admin',  password: '123456')
+    visit  root_path
+    click_on 'Login'
+    fill_in  'Email' ,  with: 'kavuna@gmail.Com'
     fill_in  'Password' ,  with: '123456'
-    #fill_in  'Password_confirmation' ,  with: '123456'
-    click_on  'signup'
-    #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', password: '123456')
-    visit  login_path
-    fill_in  'Email' ,  with: 'Foo@gmail.Com'
-    fill_in  'Password' ,  with: '123456'
-    click_on  'Login'
-    click_on 'Home'
+    click_on  'Sign In'
     click_on 'Andika Umukoro'
-    fill_in  'Name' ,  with: 'task1'
-    fill_in  'Content' ,  with: 'content1'
-    fill_in  'Status' ,  with: 'status1'
-    fill_in  'Priority' ,  with: 'high'
-    # fill_in  'Startdate' ,  with: '26.9.2019'
-    # fill_in  'End date' ,  with: '27.9.2019'
-    click_on  'Unda'
-    # Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    # Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
+      fill_in  'Name' ,  with: 'task1'
+      fill_in  'Content' ,  with: 'content1'
+      # fill_in  'Status' ,  with: 'status1'
+      # fill_in  'Priority' ,  with: 'Priority1'
+      click_on 'Unda'
+  end
+  scenario "Test task list" do
+    # visit  signup_path
+    # fill_in  'Name' ,  with: 'new'
+    # fill_in  'Email' ,  with: 'Foo@gmail.Com'
+    # fill_in  'Password' ,  with: '123456'
+    # #fill_in  'ConfirmationPassword' ,  with: '123456'
+    # click_on  'Create'
+    
     visit tasks_path
-    #save_and_open_page
+    save_and_open_page
     expect(page).to have_content 'task1'
     expect(page).to have_content 'content1'
   end
@@ -38,59 +36,92 @@ RSpec.feature "Task management function", type: :feature do
     # visit to new_task_path (transition to task registration page)
     visit new_task_path
 
-    # In the input field labeled "Task Name" and in the input field labeled "Task Details"
-    # Fill in the task title and content respectively
+   
 
     fill_in  'Name' ,  with: 'completed' 
     fill_in  'Content' ,  with: 'ruby task' 
 
-    # Click_on a button with a value (notation letter) of “Register”
     click_on  'Unda'
 
-    # Check if the information that is supposed to be registered by click is displayed on the task detail page
-    # (Assumption that transition to the task details screen will be made if the task is registered)
     expect(page ).to  have_content  'ruby task'
   end
 
   scenario "Test task details" do
-    @task = Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    @task = Task.first
     visit task_path(id: @task.id)
-    expect(page).to have_content('test_task_01')
-    expect(page).to have_content('testtesttest')
+    expect(page).to have_content('task1')
+    expect(page).to have_content('content1')
   end
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
-    @task = Task.order('created_at DESC')
-    
+    task = Task.order('created_at DESC')
+        
   end
   scenario "Test task updating" do
-    task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    visit edit_task_path(id: task1.id)
+    @task = Task.first
+    visit edit_task_path(id: @task.id)
     fill_in 'Name', with: 'name update'
     fill_in 'Content', with: 'content update'
-    click_on 'Sasaisha'
+    click_on 'Unda task'
     visit tasks_path
     expect(page).to have_content('name update')
     expect(page).to have_content('content update')
   end
   scenario 'Test Task Deletion' do
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
+    @task = Task.first
+    @task.destroy
+    # expect(page).to have_content('testtesttest')
+    # click_on 'Destroy'
     visit tasks_path
-    expect(page).to have_content('testtesttest')
-    click_on 'Destroy'
-    expect(page).not_to have_content('testtesttest')
+    expect(page).not_to have_content('content1')
   end
   scenario 'Test Task validation' do
-    task = Task.create!(name: 'test_task_01', content: '', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    expect(task).not_to be_valid
+    visit tasks_path
+    click_on 'Andika Umukoro'
+      fill_in  'Name' ,  with: 'task1'
+      # fill_in  'Status' ,  with: 'status1'
+      # fill_in  'Priority' ,  with: 'Priority1'
+      click_on 'Unda'
+      expect(page).to have_content('Content haitakiwi kuwa wazi')
+
   end
-  scenario "Test whether tasks are arranged in descending order of end_date" do
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 1)
-    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019', user_id: 2)
-    @task = Task.order('end_date DESC')
-    
+  scenario "Test whether tasks are arranged in descending order of deadline" do
+    click_on 'Andika Umukoro'
+      fill_in  'Name' ,  with: 'task2'
+      fill_in  'Content' ,  with: 'content2'
+      # fill_in  'Status' ,  with: 'status2'
+      # fill_in  'Priority' ,  with: 'Priority2'
+      #fill_in  'End date' ,  with: '10.2.2019'
+      click_on 'Unda'
+      @task = Task.first
+      @task_newest = Task.last
+      @task_newest.end_date = '10.10.2020'
+      @task_newest.save
+      #Task.order('created_at desc').all.expect == [@task_newest, @email]
+      task  = Task.order('end_date desc').all
+    expect(task).to eq([@task_newest, @task])
+  end
+  scenario "Test whether tasks are arranged in descending order of priority" do
+    click_on 'Andika Umukoro'
+      fill_in  'Name' ,  with: 'task2'
+      fill_in  'Content' ,  with: 'content2'
+      # fill_in  'Status' ,  with: 'status2'
+      # fill_in  'Priority' ,  with: 'Priority2'
+      #fill_in  'End date' ,  with: '10.2.2019'
+      click_on 'Unda'
+      @task = Task.first
+      @task_newest = Task.last
+      @task_newest.end_date = '10.10.2020'
+      @task_newest.save
+      #Task.order('created_at desc').all.expect == [@task_newest, @email]
+      task  = Task.order('end_date desc').all
+    expect(task).to eq([@task_newest, @task])
+  end
+  scenario "test task search" do
+    visit tasks_path
+    fill_in  'term1' ,  with: 'task1'
+    click_on ' Search'
+    expect(page).to have_content('content1')
   end
 
 end
