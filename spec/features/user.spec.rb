@@ -2,18 +2,28 @@
 require 'rails_helper'
 
 # On the right side of this RSpec.feature, write the test item name like "task management feature" (grouped by do ~ end)
-RSpec.feature "Task management function", type: :feature do
+RSpec.feature "user management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
-  scenario "Test task list" do
+  background do
+    User.create!(name: "kavuna", email: 'kavuna@gmail.Com', user_type: 'admin',  password: '123456')
+    visit  login_path
+    #click_on 'Login'
+    fill_in  'Email' ,  with: 'kavuna@gmail.Com'
+    fill_in  'Password' ,  with: '123456'
+    click_on  'SignIn'
     
-    User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
+  end
+  
+  scenario "Test user list" do
+    
+    #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
     visit users_path
     expect(page).to have_content 'kavuna'
 
   end
 
   scenario "Test user creation" do
-    User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
+    #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
 
     
     visit users_path
