@@ -26,7 +26,4 @@ RSpec.feature "Task management function", type: :feature do
     expect(page).to have_content('kavuna@gmail.com')
     expect(page).to have_content('admin')
   end
-
-  
-
 end

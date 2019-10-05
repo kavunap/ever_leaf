@@ -6,11 +6,11 @@ RSpec.feature "Task management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
   background do
     User.create!(name: "kavuna", email: 'kavuna@gmail.Com', user_type: 'admin',  password: '123456')
-    visit  root_path
-    click_on 'Login'
+    visit  login_path
+    #click_on 'Login'
     fill_in  'Email' ,  with: 'kavuna@gmail.Com'
     fill_in  'Password' ,  with: '123456'
-    click_on  'Sign In'
+    click_on  'SignIn'
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task1'
       fill_in  'Content' ,  with: 'content1'
