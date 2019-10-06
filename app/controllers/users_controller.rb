@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :only_see_own_page, only: [:show]
+  before_action :only_create_user_when_none_signed_in, only: [:new, :create]
 
   # GET /users
   def index
+    @users = User.all
+  end
+  def admin
     @users = User.all
   end
 
@@ -21,12 +26,15 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    unless current_user
+      @user = User.new(user_params)
 
-    if @user.save
-      redirect_to tasks_url, notice: 'User was successfully created.'
-    else
-      render :new
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to tasks_url, notice: 'User was successfully created.'
+      else
+        render :new
+      end
     end
   end
 
@@ -55,4 +63,18 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :user_type, :password, :password_confirmation)
     end
+end
+
+def only_see_own_page
+  @user = User.find(params[:id])
+
+  if current_user != @user
+    redirect_to users_path, notice: "Sorry, but you are only allowed to view your own profile page."
+  end
+end
+
+def only_create_user_when_none_signed_in
+  if current_user
+    redirect_to users_path,  notice: "you can't create user when signed in"
+  end
 end

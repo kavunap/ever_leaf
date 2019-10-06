@@ -16,6 +16,9 @@
   <% if current_user %>
   <%= link_to 'My page', user_path(current_user.id), class: 'btn btn-info' %>
   <% end %>
+  <% if current_user && current_user.user_type == "admin" %>
+  <%= link_to 'Manage users', admin_path, class: 'btn btn-info' %>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,7 +28,6 @@
       <li class="nav-item">
       
       </li>
-      
       
       </li>
       <li class="nav-item">
@@ -46,12 +48,12 @@
       <%= link_to 'Signup', signup_path, class: "btn btn-primary " %>
 
       </li>
-      <% end%>
+      <% end %>
       <% if current_user %>
       <li class="nav-item">
       <%= link_to 'Users', users_path, class: "btn btn-primary " %>
       </li>
-      <% end%>
+      <% end %>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
@@ -62,7 +64,7 @@
     <p class="notice"><%= notice %></p>
     
     <%= yield %>
-    <br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <footer class="page-footer font-small blue pt-4 fixed-bottom bg-info">
 
           <div class="container-fluid text-center text-md-left">
