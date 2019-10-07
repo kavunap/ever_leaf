@@ -123,7 +123,4 @@ RSpec.feature "Task management function", type: :feature do
     click_on ' Search'
     expect(page).to have_content('content1')
   end
-
-  
-
 end
