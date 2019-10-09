@@ -6,6 +6,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+   
+   
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
@@ -17,7 +20,7 @@
   <%= link_to 'My page', user_path(current_user.id), class: 'btn btn-info' %>
   <% end %>
   <% if current_user && current_user.user_type == "admin" %>
-  <%= link_to 'Manage users', admin_path, class: 'btn btn-info' %>
+  <%= link_to 'Manage users', admin_users_path, class: 'btn btn-info' %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -32,7 +35,6 @@
       </li>
       <li class="nav-item">
         <i class="fas fa-cloud"></i>
-        
       </li>
       <li class="nav-item active">
       <%= link_to 'Home', root_path, class: "btn btn-primary " %>
@@ -77,7 +79,12 @@
           <div class="footer-copyright text-center py-3">© 2019 Copyright:
             <a href="#"> DiveIntoCode.com</a>
           </div>
-
         </footer>
+        <script> 
+          setInterval(function(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "/i_am_still_here", true);
+          xhttp.send();
+        }, 5*60*1000); </script>
   </body>
 </html>

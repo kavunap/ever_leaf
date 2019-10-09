@@ -25,13 +25,16 @@
 }
 .signup-card{
     background-color: orangered;
-    position: relative;
-    width: 30%;
-    height: 400px;
+    //position: relative;
+    width: 50%;
+    height: auto;
     border-block-color: red;
     border-radius: 10%;
-    margin-top: 10px;
-    padding-top: 10px;
+
+    display: inline-block;
+    padding:5%;
+    font-size: 40px;
+    font-style: oblique
 }
 body{
     //background-image: image('user.png');
@@ -62,5 +65,23 @@ h1{
     // margin-left: 80px;
     // border-block-end-style: groove;
     border-radius: 15px;
+    float: right;
 
+}
+.error{
+    display: block;
+    float: right;
+    margin: 0%;
+    background-color: aqua;
+}
+.input{
+    margin-top: 30%;
+    
+}
+.field{
+    width: 100%;
+    float: left;
+}
+.label{
+    float: left;
 }

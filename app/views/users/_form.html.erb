@@ -2,6 +2,7 @@
 <center>
 <%= form_with(model: user, class: 'signup-card', local: true) do |form| %>
   <% if user.errors.any? %>
+  
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
@@ -11,43 +12,45 @@
       <% end %>
       </ul>
     </div>
+    
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= form.text_field :name, class: "field1" %>
+  <div class="field"><br>
+    <%= form.label :name %> <br>
+    <%= form.text_field :name%>
   </div>
 
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
 
   <div class="field">
-    <%= form.label :email %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= form.text_field :email, class: "field1" %>
+    <%= form.label :email %> <br>
+    <%= form.text_field :email %>
   </div>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
   <div class="field">
-    <%= form.label :user_type %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= form.text_field :user_type, disabled: (true unless current_user && current_user.user_type == "admin"), class: "field1" %>
+    <%= form.label :user_type %><br>
+    <%= form.text_field :user_type, disabled: (true unless current_user && current_user.user_type == "admin") %>
   </div>
 
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-  <div class="field">
-    <%= form.label :password %>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= form.password_field :password, class: "field1" %>
-  </div>
-
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
 
   <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, class: "field1" %>
+    <%= form.label :password %><br>
+    <%= form.password_field :password %>
   </div>
 
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+
+  <div class="field">
+    <%= form.label :password_confirmation %><br>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+
 
   <div class="actions">
     <%= form.submit 'signup', class: 'btn btn-success' %>
   </div>
+  
 <% end %>
 </center>

@@ -1,0 +1,29 @@
+
+<p> <h2>User Details</h2>
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>User type:</strong>
+  <%= @user.user_type %>
+</p>
+<p> <h2> Tasks Submitted By This User</h2>
+<% @user.tasks.each do |task| %>
+<ul>
+<li class = "user-tasks">
+  Name:<%= task.name + '       ' %> <br/>Content:<%= task.content %>
+</li>
+</ul>
+  
+<% end %>
+</p>
+
+<%= link_to 'Back', users_path, class: 'btn btn-info' %>
+<br/><br/><br/><br/><br/><br/><br/><br/>

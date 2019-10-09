@@ -60,7 +60,8 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to tasks_url, notice: t('tasks.update')
+      redirect_to tasks_url, notice: ('tasks.update')
+
     else
       render :edit
     end

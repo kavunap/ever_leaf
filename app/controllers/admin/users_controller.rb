@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # before_action :only_see_own_page, only: [:show]
   # before_action :only_create_user_when_none_signed_in, only: [:new, :create]
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    # unless current_user
+    #unless current_user
       @user = User.new(user_params)
 
       if @user.save
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       else
         render :new
       end
-    # end
+    #end
   end
 
   # PATCH/PUT /users/1
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     def i_am_still_here
       current_user.update(last_seen_at:DateTime.now)
     end
-
+end
 
 def only_see_own_page
   @user = User.find(params[:id])
@@ -83,5 +83,4 @@ def only_create_user_when_none_signed_in
   if current_user
     redirect_to users_path,  notice: "you can't create user when signed in"
   end
-end
 end
