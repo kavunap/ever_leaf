@@ -25,13 +25,13 @@
 }
 .signup-card{
     background-color: orangered;
-    position: relative;
-    width: 30%;
-    height: 400px;
+    //position: relative;
+    width: 50%;
+    height: 700px;
     border-block-color: red;
     border-radius: 10%;
-    margin-top: 10px;
-    padding-top: 10px;
+
+    display: inline-block;
 }
 body{
     //background-image: image('user.png');
@@ -63,4 +63,14 @@ h1{
     // border-block-end-style: groove;
     border-radius: 15px;
 
+}
+.error{
+    display: block;
+    float: right;
+    margin: 0%;
+    background-color: aqua;
+}
+.input{
+    margin-top: 30%;
+    
 }

@@ -2,7 +2,6 @@
 <center>
 <%= form_with(model: user, class: 'signup-card', local: true) do |form| %>
   <% if user.errors.any? %>
-  
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
@@ -12,9 +11,8 @@
       <% end %>
       </ul>
     </div>
-    
   <% end %>
-<div class = "input">
+
   <div class="field">
     <%= form.label :name %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
     <%= form.text_field :name, class: "field1" %>
@@ -51,6 +49,5 @@
   <div class="actions">
     <%= form.submit 'signup', class: 'btn btn-success' %>
   </div>
-  <div>
 <% end %>
 </center>
