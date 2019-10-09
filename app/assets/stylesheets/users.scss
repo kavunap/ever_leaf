@@ -27,11 +27,12 @@
     background-color: orangered;
     //position: relative;
     width: 50%;
-    height: 700px;
+    height: auto;
     border-block-color: red;
     border-radius: 10%;
 
     display: inline-block;
+    padding:5%;
 }
 body{
     //background-image: image('user.png');
@@ -62,6 +63,7 @@ h1{
     // margin-left: 80px;
     // border-block-end-style: groove;
     border-radius: 15px;
+    float: right;
 
 }
 .error{
@@ -73,4 +75,11 @@ h1{
 .input{
     margin-top: 30%;
     
+}
+.field{
+    width: 100%;
+    float: left;
+}
+.label{
+    float: left;
 }
