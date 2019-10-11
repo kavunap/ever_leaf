@@ -17,7 +17,8 @@ RSpec.feature "user management function", type: :feature do
   scenario "Test user list" do
     
     #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
-    visit users_path
+    visit admin_users_path
+    #click_on "Administration screen"
     expect(page).to have_content 'kavuna'
 
   end
@@ -25,24 +26,24 @@ RSpec.feature "user management function", type: :feature do
   scenario "Test user creation" do
     #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
 
-    
-    visit users_path
+    #click_on "Administration screen"
+    visit admin_users_path
     expect(page ).to  have_content  'kavuna'
   end
 
   scenario "Test user details" do
     @user= User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
-    visit user_path(id: @user.id)
+    visit admin_user_path(id: @user.id)
     expect(page).to have_content('kavuna@gmail.com')
     expect(page).to have_content('admin')
   end
   scenario "Test task updating" do
     @user = User.first
-    visit edit_user_path(id: @user.id)
+    visit edit_admin_user_path(id: @user.id)
     fill_in 'Name', with: 'name update'
     #fill_in 'Content', with: 'content update'
     click_on 'signup'
-    visit users_path
+    visit admin_users_path
     expect(page).to have_content('name update')
     #expect(page).to have_content('content update')
   end
