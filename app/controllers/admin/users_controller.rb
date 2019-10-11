@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   # before_action :only_see_own_page, only: [:show]
   # before_action :only_create_user_when_none_signed_in, only: [:new, :create]
   before_action :give_users_right_to_admin, only: [:index]
-  before_action :check_before_delete, only: [:destroy]
+  #before_action :check_before_delete, only: [:destroy]
   # GET /users
   def index
     @users = User.all
