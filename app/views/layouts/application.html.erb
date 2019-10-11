@@ -36,10 +36,9 @@
       <li class="nav-item">
         <i class="fas fa-cloud"></i>
       </li>
-      <li class="nav-item active">
-      <%= link_to 'Home', root_path, class: "btn btn-primary " %>
-      </li>
+      
       <% if current_user %>
+      <p> signed in as <%= current_user.name %>
       <li class="nav-item active">
       <%= link_to 'signout', logout_path, class: "btn btn-primary " %>
       </li>
@@ -51,6 +50,10 @@
 
       </li>
       <% end %>
+      <li class="nav-item active">
+      <%= link_to 'Home', root_path, class: "btn btn-primary " %>
+      </li>
+      
       <% if current_user %>
       <li class="nav-item">
       <%= link_to 'Normal Users', users_path, class: "btn btn-primary " %>

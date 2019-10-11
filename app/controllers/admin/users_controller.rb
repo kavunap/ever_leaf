@@ -101,13 +101,9 @@ def only_create_user_when_none_signed_in
   end
 end
   def give_users_right_to_admin
-    unless current_user.user_type == "admin"
+    unless current_user && current_user.user_type == "admin"
       redirect_to root_url, notice: "only admin user can access this page"
     end
   end
-  def check_before_delete
-    
-    
-    
-  end
+ 
 end
