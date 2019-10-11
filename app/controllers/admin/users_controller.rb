@@ -2,7 +2,8 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # before_action :only_see_own_page, only: [:show]
   # before_action :only_create_user_when_none_signed_in, only: [:new, :create]
-
+  before_action :give_users_right_to_admin, only: [:index]
+  before_action :check_before_delete, only: [:destroy]
   # GET /users
   def index
     @users = User.all
@@ -49,8 +50,23 @@ class Admin::UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy 
-    @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    @users = User.all
+    i = 0
+    @users.each do |user|
+      if user.user_type == "admin"
+        i += 1
+      end
+      
+    end
+    @admins = i
+    if @user.id == current_user.id
+      redirect_to root_url, notice: "You can not delete signed in user"
+    elsif @admins == 1
+      redirect_to root_url, notice: "Atleast on admin must remain!"
+    else
+      @user.destroy
+      redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+    end
   end
   def admin 
     user = User.all
@@ -69,7 +85,7 @@ class Admin::UsersController < ApplicationController
     def i_am_still_here
       current_user.update(last_seen_at:DateTime.now)
     end
-end
+
 
 def only_see_own_page
   @user = User.find(params[:id])
@@ -82,5 +98,16 @@ end
 def only_create_user_when_none_signed_in
   if current_user
     redirect_to users_path,  notice: "you can't create user when signed in"
+  end
+end
+  def give_users_right_to_admin
+    unless current_user.user_type == "admin"
+      redirect_to root_url, notice: "only admin user can access this page"
+    end
+  end
+  def check_before_delete
+    
+    
+    
   end
 end

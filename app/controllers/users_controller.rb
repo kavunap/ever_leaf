@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :only_see_own_page, only: [:show]
-  # before_action :only_create_user_when_none_signed_in, only: [:new, :create]
-
+  before_action :only_see_own_page, only: [:show]
+  #before_action :only_create_user_when_none_signed_in, only: [:new, :create]
+  before_action :check_user, only: [:destroy]
   # GET /users
   def index
     @users = User.all
@@ -82,6 +82,11 @@ end
 def only_create_user_when_none_signed_in
   if current_user
     redirect_to users_path,  notice: "you can't create user when signed in"
+  end
+end
+def check_user
+  if @user.id == current_user.id
+    redirect_to users_path, notice: "You can not delete signed in user"
   end
 end
 end
