@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :only_see_own_page, only: [:show]
   #before_action :only_create_user_when_none_signed_in, only: [:new, :create]
   before_action :check_user, only: [:destroy]
-  # GET /users
+  before_action :give_users_right_to_list, only: [:index, :destroy]
   def index
     @users = User.all
   end
@@ -71,22 +71,32 @@ class UsersController < ApplicationController
     end
 
 
-def only_see_own_page
-  @user = User.find(params[:id])
+  def only_see_own_page
+    @user = User.find(params[:id])
 
-  if current_user != @user
-    redirect_to users_path, notice: "Sorry, but you are only allowed to view your own profile page."
+    if current_user != @user
+      redirect_to users_path, notice: "Sorry, but you are only allowed to view your own profile page."
+    end
   end
-end
 
-def only_create_user_when_none_signed_in
-  if current_user
-    redirect_to users_path,  notice: "you can't create user when signed in"
+  def only_create_user_when_none_signed_in
+    if current_user
+      redirect_to users_path,  notice: "you can't create user when signed in"
+    end
   end
-end
-def check_user
-  if @user.id == current_user.id
-    redirect_to users_path, notice: "You can not delete signed in user"
+  def check_user
+    if @user.id == current_user.id
+      redirect_to users_path, notice: "You can not delete signed in user"
+    end
   end
-end
+  def give_users_right_to_list
+    unless current_user && current_user.user_type == "admin"
+      redirect_to root_url, notice: "only admin user can access this page"
+    end
+  end
+  # def user_can_only_edit_own_profile
+  #   unless current_user.id == @user.id
+  #     redirect_to @user, notice: "You are only allowed to edit your own profile"
+  #   end
+  # end 
 end

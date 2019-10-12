@@ -24,7 +24,7 @@ RSpec.feature "user management function", type: :feature do
   end
 
   scenario "Test user creation" do
-    #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
+    User.create!(name: 'paul', email: 'paul@gmail.com', user_type: 'admin', password: '123456')
 
     #click_on "Administration screen"
     visit admin_users_path

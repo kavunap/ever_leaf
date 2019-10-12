@@ -15,7 +15,7 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <% if user.user_type == 'admin' %>
+      
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
@@ -28,7 +28,7 @@
       
       </tr>
       <% end %>
-    <% end %>
+    
   </tbody>
 </table>
 
