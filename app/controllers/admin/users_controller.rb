@@ -49,28 +49,18 @@ class Admin::UsersController < ApplicationController
   end
 
   # DELETE /users/1
-  def destroy 
-    @users = User.all
-    i = 0
-    @users.each do |user|
-      if user.user_type == "admin"
-        i += 1
-      end
-      
-    end
-    @admins = i
+  def destroy
     if @user.id == current_user.id
-      redirect_to root_url, notice: "You can not delete signed in user"
+      redirect_to admin_users_url, notice: "You can not delete signed in user"
+      @admins = User.admins
     elsif @admins == 1
-      redirect_to root_url, notice: "Atleast on admin must remain!"
+      redirect_to admin_users_url, notice: "Atleast one admin must remain!"
     else
       @user.destroy
       redirect_to admin_users_url, notice: 'User was successfully destroyed.'
     end
   end
-  def admin 
-    user = User.all
-  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
