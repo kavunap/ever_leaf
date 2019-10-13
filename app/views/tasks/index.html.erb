@@ -55,6 +55,7 @@
   </tbody>
 </table>
 <%= Label.all.each do |label| %>
+  <%= label.check_box :title %>
   <%= label.content%>
 <% end %>
 <br>

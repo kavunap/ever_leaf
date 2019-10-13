@@ -18,7 +18,7 @@ class Task < ApplicationRecord
   
   paginates_per 2
  
-  def self.order_list(sort_order) 
+  def self.order_list(sort_order)
     if sort_order == "created_at"
       order(created_at: :desc)
     elsif sort_order == "end_date"
