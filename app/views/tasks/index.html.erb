@@ -54,7 +54,9 @@
     <% end %>
   </tbody>
 </table>
-
+<%= Label.all.each do |label| %>
+  <%= label.content%>
+<% end %>
 <br>
 <center>
 <%= link_to t('tasks.new'), new_task_path, class: "btn btn-info" %>

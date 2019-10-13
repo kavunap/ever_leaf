@@ -14,19 +14,28 @@ RSpec.feature "user management function", type: :feature do
     
   end
   
+  scenario "Test number of users" do
+    
+    User.create!(name: 'paul', email: 'paul@gmail.com', user_type: 'admin', password: '123456')
+    @user = User.all.count
+    expect(@user).to eq 2
+  end
+
   scenario "Test user list" do
     
-    #User.create!(name: 'kavuna', email: 'kavuna@gmail.com', user_type: 'admin', password: '123456')
+    User.create!(name: 'paul', email: 'paul@gmail.com', user_type: 'admin', password: '123456')
     visit admin_users_path
-    #click_on "Administration screen"
-    expect(page).to have_content 'kavuna'
-
+    expect(page ).to  have_content  'kavuna'
+    expect(page ).to  have_content  'paul'
   end
 
   scenario "Test user creation" do
     User.create!(name: 'paul', email: 'paul@gmail.com', user_type: 'admin', password: '123456')
+    visit admin_users_path
+    expect(page ).to  have_content  'kavuna'
+  end
 
-    #click_on "Administration screen"
+  scenario "test enable user creation page" do
     visit admin_users_path
     expect(page ).to  have_content  'kavuna'
   end
