@@ -14,3 +14,14 @@ User.create!(
   password_confirmation: "123456"
   #watched_on: 5.days.ago
 )
+Label.create!(
+  title: "label2",
+  content: "content2",
+  user_id = 1
+)
+
+Label.create!(
+  title: "label3",
+  content: "content3",
+  user_id = 1
+)

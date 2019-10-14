@@ -1,18 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authorize
-  # GET /tasks
-  # def index
-  #   #@tasks = Task.all.latest
-  #   if (params[:search])
-  #     @tasks = Task.search(params[:search],params[:search1],params[:search2] ).order("created_at DESC").page params[:page]
-  #   elsif (params[:search])
-  #     @tasks = Task.search(params[:search],params[:search1],params[:search2] ).order("created_at DESC").page params[:page]
-  #   else
-      
-  #     @tasks = Task.order_list(params[:sort_by]).page params[:page]
-      
-  #   end
+  
     def index
       @tasks = if params[:term]
         Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%","%#{params[:term]}%").page params[:page]

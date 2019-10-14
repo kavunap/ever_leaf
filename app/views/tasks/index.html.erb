@@ -46,6 +46,7 @@
         <td><%= task.end_date %></td>
         <td><%= task.user.name %></td>
         <td><%= task.created_at %></td>
+        
         <td><%= link_to 'Show', task, class: "btn btn-info" %></td>
         <td><%= link_to 'Edit', edit_task_path(task), class: "btn btn-info" %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
@@ -54,10 +55,6 @@
     <% end %>
   </tbody>
 </table>
-<%= Label.all.each do |label| %>
-  <%= label.check_box :title %>
-  <%= label.content%>
-<% end %>
 <br>
 <center>
 <%= link_to t('tasks.new'), new_task_path, class: "btn btn-info" %>

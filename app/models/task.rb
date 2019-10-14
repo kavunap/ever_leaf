@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
-
-  has_many :labels
+  has_and_belongs_to_many :labels
+  
   validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
 
   def self.search(term,term1,term2)
