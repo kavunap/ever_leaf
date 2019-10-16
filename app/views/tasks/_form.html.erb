@@ -1,4 +1,4 @@
-<%= form_with(model: task, class: 'task-card', local: true) do |form| %>
+<%= simple_form_for(@task, class: 'task-card', local: true, :html => {:multipart => true}) do |f| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -12,47 +12,79 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name, class: 'font-weight-bolder' %>&emsp;&emsp;&emsp;&emsp;
-    <%= form.text_field :name, class: "field1" %>
+    <%= f.label :name, class: 'font-weight-bolder' %>&emsp;&emsp;&emsp;&emsp;
+    <%= f.text_field :name, class: "field1" %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field"> 
-    <%= form.label :content, class: 'font-weight-bolder' %> &emsp;&emsp;&emsp;
-    <%= form.text_area :content, class: "field1" %>
+    <%= f.label :content, class: 'font-weight-bolder' %> &emsp;&emsp;&emsp;
+    <%= f.text_area :content, class: "field1" %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :status, class: 'font-weight-bolder' %>&emsp;&emsp;&emsp;&emsp;
-    <%= form.select :status, ['Not Started', 'In progress', 'Done'], class: "field1" %>
+    <%= f.label :status, class: 'font-weight-bolder' %>&emsp;&emsp;&emsp;&emsp;
+    <%= f.select :status, ['Not Started', 'In progress', 'Done'], class: "field1" %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :priority, class: 'font-weight-bolder' %>&emsp;&emsp;&emsp;
-    <%= form.select :priority, ['High', 'medium', 'Under'], class: "field1" %>
+    <%= f.label :priority, class: 'font-weight-bolder' %>&emsp;&emsp;&emsp;
+    <%= f.select :priority, ['High', 'medium', 'Under'], class: "field1" %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :start_date, class: 'font-weight-bolder' %>&emsp;&emsp;
-    <%= form.date_select :start_date, class: "field1" %>
+    <%= f.label :start_date, class: 'font-weight-bolder' %>&emsp;&emsp;
+    <%= f.date_select :start_date, class: "field1" %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <div class="field">
-    <%= form.label :end_date, class: 'font-weight-bolder' %>&emsp;&emsp;
-    <%= form.date_select :end_date, class: "field1" %>
+    <%= f.label :end_date, class: 'font-weight-bolder' %>&emsp;&emsp;
+    <%= f.date_select :end_date, class: "field1" %>
   </div>
   &nbsp;&nbsp;&nbsp;&nbsp;
   
   <div class="field">
   
-    <%= form.hidden_field :user_id, value: 'current_user.id' %>
+    <%= f.hidden_field :user_id, value: 'current_user.id' %>
   </div>
-  <div class="field">
-    <% Label.all.each do |label| %>
-      <%= form.check_box :label_ids, {multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id] %>
-      <label style = "background-color: aquamarine"> <%= label.title %> </label>
+
+  <% if false %>
+  <div id="labels">
+    <%Label.all.each do |label| %>
+      <%= f.check_box :label_ids, { multiple: true, checked: label[:checked],
+        disabled: label[:disabled], include_hidden: false }, label[:id] %>
+      <label style = "background-color: aquamarine"> <%= label.title %>
     <% end %>
+ </div>
+
+      
+  <div class="field">
+  <% Label.all.each do |label| %>
+   <%= label_tag label.title, label.title %>
+   <%= check_box_tag 'task[label][]', label.title, checked(label.title), id: 'label1' %>
+  <% end %>
   </div>
+
+  <%= f.simple_fields_for(:label_associations) do |roles_form| %>
+    <% role = roles_form.object.title.titleize %>
+    <%= roles_form.input :name, as: :hidden %>
+    <%= roles_form.simple_fields_for(:entity) do |entity_form| %>
+      <%= entity_form.input :name, label: "#{role} Name" %>
+      <%= entity_form.input :address, label: "#{role} Address" %>
+    <% end %>
+  <% end %>
+<% end %>
+  <%= f.simple_fields_for(:label_associations) do |roles_form| %>
+   
+    <%= roles_form.input :label_id %>
+    <%= roles_form.input :task_id %>
+    <%= roles_form.simple_fields_for(:label) do |entity_form| %>
+      <%= entity_form.input :title, label: "#{role} Name" %>
+      <%= entity_form.input :content, label: "#{role} Address" %>
+    <% end %>
+  
+
+  <% end %>
   <div class="actions">
-    <%= form.submit 'Unda task', class:'btn btn-success' %>
+    <%= f.submit 'Unda task', class:'btn btn-success' %>
   </div>
 <% end %>

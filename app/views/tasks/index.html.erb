@@ -23,8 +23,10 @@
       <th><%= t('tasks.content') %></th>
       <th><%= t('tasks.status') %></th>
       <th><%= t('tasks.priority') %></th>
+      <th>Label</th>
       <th><%= t('tasks.start') %></th>
       <th><%= t('tasks.end') %></th>
+      
 
       <th> User</th>
       <th> Creation Date</th>
@@ -42,6 +44,7 @@
         <td><%= task.content %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
+        <td><%= task.label %></td>
         <td><%= task.start_date %></td>
         <td><%= task.end_date %></td>
         <td><%= task.user.name %></td>
