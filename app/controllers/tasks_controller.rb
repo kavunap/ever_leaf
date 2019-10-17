@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
-    #@labels = Task.label
+    # @labels = Task.labeled.size
   end
 
   # GET /tasks/new

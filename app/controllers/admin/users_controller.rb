@@ -32,7 +32,7 @@ class Admin::UsersController < ApplicationController
 
       if @user.save
         #session[:user_id] = @user.id
-        redirect_to tasks_url, notice: 'User was successfully created.'
+        redirect_to admin_users_url, notice: 'User was successfully created.'
       else
         render :new
       end
