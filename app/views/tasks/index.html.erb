@@ -12,6 +12,11 @@
   <%= text_field_tag :term, params[:term],placeholder:'  search by both name or status' %>
   <%= submit_tag 'Search', name: nil %>
  <% end %><br>
+
+ <%= form_tag(tasks_path, method: :get,style:'') do %>
+  <%= text_field_tag :term3, params[:term3],placeholder:'  search by label' %>
+  <%= submit_tag '  Search', name: nil %>
+ <% end %><br>
  
 <center><h1>Tasks</h1></center>
 
@@ -44,7 +49,7 @@
         <td><%= task.content %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
-        <td><%= task.label %></td>
+        <td><%= task.labeled %></td>
         <td><%= task.start_date %></td>
         <td><%= task.end_date %></td>
         <td><%= task.user.name %></td>

@@ -9,6 +9,8 @@ class TasksController < ApplicationController
         Task.where('name LIKE ?', "%#{params[:term1]}%").page params[:page]
       elsif params[:term2]
         Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
+      elsif params[:term3]
+        Task.where('labeled LIKE ?', "%#{params[:term3]}%").page params[:page]
       else
         #@tasks = Task.all.order('created_at desc').page params[:page]
         @tasks = Task.order_list(params[:sort_by]).page params[:page]
@@ -23,14 +25,15 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
+    #@labels = Task.label
   end
 
   # GET /tasks/new
   def new
     @task = current_user.tasks.build
     @task.user_id = current_user.id
-    @task.labels.build
-    @task.label_associations.build
+    # @task.labels.build
+    # @task.label_associations.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @task }
@@ -78,7 +81,7 @@ class TasksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def task_params
       #params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, label_id:[], label:[])
-      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, :labels_attributes, :label_associations_attributes)
+      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, :labels_attributes, labeled:[])
     end
     
 end

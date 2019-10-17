@@ -11,7 +11,6 @@ RSpec.feature "user management function", type: :feature do
     fill_in  'Email' ,  with: 'kavuna@gmail.Com'
     fill_in  'Password' ,  with: '123456'
     click_on  'SignIn'
-    
   end
   
   scenario "Test number of users" do

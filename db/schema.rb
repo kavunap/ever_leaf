@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_170629) do
+ActiveRecord::Schema.define(version: 2019_10_17_084918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_10_14_170629) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "label_id"
+    t.string "labeled", limit: 30
     t.index ["label_id"], name: "index_tasks_on_label_id"
     t.index ["status"], name: "index_tasks_on_status"
     t.index ["user_id"], name: "index_tasks_on_user_id"

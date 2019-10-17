@@ -32,8 +32,11 @@
 
 <p> <h2> Labels attached to this task</h2>
 <br>
- Label: <%= @task.label %>
 
+<% @task.labeled.size do |l| %>
+<h1> <%= @task.labeled[l] %></h1><br><br>
+<% end %>
+<h1> <%= @task.labeled.size%></h1><br><br>
 <%= link_to  t('tasks.edit') , edit_task_path(@task), class: 'btn btn-info' %> |
 <%= link_to  t('tasks.back'), tasks_path, class: 'btn btn-info' %>
 <br/><br/><br/><br/><br/><br/><br/><br/>

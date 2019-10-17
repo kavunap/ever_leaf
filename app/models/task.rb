@@ -1,14 +1,13 @@
 class Task < ApplicationRecord
   belongs_to :user
-  #has_and_belongs_to_many :labels, optional: true
-  has_many :label_associations
+  #has_and_belongs_to_many :labels, optional: true, dependent: :destroy
+  #has_many :labels
   # accepts_nested_attributes_for :labels
-  # has_many :label_associations
+  has_many :label_associations
   has_many :labels, :through => :label_associations
-
   # accepts_nested_attributes_for :label_associations, :reject_if => proc { |a| 
   #    a['label_id'].blank? }
-  accepts_nested_attributes_for :label_associations
+  #accepts_nested_attributes_for :labels
   validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
   #validates_presence_of :label_id
   def self.search(term,term1,term2)
