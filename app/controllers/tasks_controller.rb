@@ -12,8 +12,8 @@ class TasksController < ApplicationController
       elsif params[:term3]
         Task.where('labeled LIKE ?', "%#{params[:term3]}%").page params[:page]
       else
-        #@tasks = Task.all.order('created_at desc').page params[:page]
-        @tasks = Task.order_list(params[:sort_by]).page params[:page]
+        @tasks = Task.all.order('created_at desc').page params[:page]
+        #@tasks = Task.order_list(params[:sort_by]).page params[:page]
       end
     end
     def search
@@ -26,6 +26,8 @@ class TasksController < ApplicationController
   # GET /tasks/1
   def show
     # @labels = Task.labeled.size
+    # @tasks = Task.labeled
+    # @labels = Label.where(id: @tasks)
   end
 
   # GET /tasks/new
@@ -84,4 +86,8 @@ class TasksController < ApplicationController
       params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, :labels_attributes, labeled:[])
     end
     
+    def fetch_labels
+      @tasks = Task.labeled
+      @labels = Label.where(id: @task)
+    end
 end

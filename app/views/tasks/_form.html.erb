@@ -52,7 +52,7 @@
   <div class="field">
   <% Label.all.each do |label| %>
    <%= label_tag label.title, label.title %>
-   <%= check_box_tag 'task[labeled][]', label.title, checked(label.title), id: 'label1' %>
+   <%= check_box_tag 'task[labeled][]', label.id, checked(label.id), id: 'label1' %>
   <% end %>
   </div>
 
