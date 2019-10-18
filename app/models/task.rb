@@ -9,7 +9,7 @@ class Task < ApplicationRecord
   accepts_nested_attributes_for :tasks_labels, :reject_if => proc { |a| 
      a['label_id'].blank? }
   accepts_nested_attributes_for :labels
-  # validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
+  validates :name, :content, :status, :priority, :start_date, :end_date, presence: true
   #validates_presence_of :label_id
   def self.search(term,term1,term2)
     if term

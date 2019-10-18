@@ -9,6 +9,9 @@ class TasksController < ApplicationController
         Task.where('name LIKE ?', "%#{params[:term1]}%").page params[:page]
       elsif params[:term2]
         Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
+      elsif params[:term3]
+        Task.joins(:labels)
+          .where("labels.title ILIKE ?", "%#{params[:term3]}%").page params[:page]
       else
         #@tasks = Task.all.order('created_at desc').page params[:page]
         @tasks = Task.order_list(params[:sort_by]).page params[:page]

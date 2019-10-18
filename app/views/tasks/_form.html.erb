@@ -63,11 +63,13 @@
   
   <% end %>
   <% end %>
-  <div>
+  <div class = "tables">
   <% Label.all.each do |label| %>
+    <%= f.label:title, label.title %>
   <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-  <label style = "background-color:aquamarine"> label.title</label>
+  
   <% end %>
+  
   </div>
   <div class="actions">
     <%= f.submit 'Unda task', class:'btn btn-success' %>
