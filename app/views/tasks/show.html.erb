@@ -33,13 +33,15 @@
 <p> <h2> Labels attached to this task</h2>
 <br>
 
-<% @task.labeled.each do |l| %>
-  
-  
-<h1> <%= l %></h1><br><br>
+<% @task.label_id.each do |l| %>
+  <% Label.all.each do |obj| %>
+    <% la = l.to_f %>
+    <% if obj.id == la %>
+    <b>Label Title:</b> <%= obj.title %>&emsp;
+    <b>Label contents:</b><%= obj.content %><br>
+  <% end %>
+  <% end %>
 <% end %>
-
-
 
 <%= link_to  t('tasks.edit') , edit_task_path(@task), class: 'btn btn-info' %> |
 <%= link_to  t('tasks.back'), tasks_path, class: 'btn btn-info' %>

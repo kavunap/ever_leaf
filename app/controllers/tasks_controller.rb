@@ -10,7 +10,7 @@ class TasksController < ApplicationController
       elsif params[:term2]
         Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
       elsif params[:term3]
-        Task.where('labeled LIKE ?', "%#{params[:term3]}%").page params[:page]
+        Task.where('cast(label_id as text LIKE ?', "%#{params[:term3]}%").page params[:page]
       else
         @tasks = Task.all.order('created_at desc').page params[:page]
         #@tasks = Task.order_list(params[:sort_by]).page params[:page]
@@ -83,7 +83,7 @@ class TasksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def task_params
       #params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, label_id:[], label:[])
-      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, :labels_attributes, labeled:[])
+      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, :labels_attributes, label_id:[])
     end
     
     def fetch_labels
