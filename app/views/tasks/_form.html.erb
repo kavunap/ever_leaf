@@ -46,44 +46,29 @@
   
     <%= f.hidden_field :user_id, value: 'current_user.id' %>
   </div>
+  
 
-  <% if false %>
-  <div id="labels">
-    <%Label.all.each do |label| %>
-      <%= f.check_box :label_ids, { multiple: true, checked: label[:checked],
-        disabled: label[:disabled], include_hidden: false }, label[:id] %>
-      <label style = "background-color: aquamarine"> <%= label.title %>
-    <% end %>
- </div>
-
-      
+  <% if false %>  
   <div class="field">
   <% Label.all.each do |label| %>
    <%= label_tag label.title, label.title %>
-   <%= check_box_tag 'task[label][]', label.title, checked(label.title), id: 'label1' %>
+   <%= check_box_tag 'task[label][]', label.title, id: 'label1' %>
   <% end %>
   </div>
 
-  <%= f.simple_fields_for(:label_associations) do |roles_form| %>
-    <% role = roles_form.object.title.titleize %>
-    <%= roles_form.input :name, as: :hidden %>
-    <%= roles_form.simple_fields_for(:entity) do |entity_form| %>
-      <%= entity_form.input :name, label: "#{role} Name" %>
-      <%= entity_form.input :address, label: "#{role} Address" %>
-    <% end %>
-  <% end %>
-<% end %>
-  <%= f.simple_fields_for(:label_associations) do |roles_form| %>
-   
-    <%= roles_form.input :label_id %>
-    <%= roles_form.input :task_id %>
-    <%= roles_form.simple_fields_for(:label) do |entity_form| %>
-      <%= entity_form.input :title, label: "#{role} Name" %>
-      <%= entity_form.input :content, label: "#{role} Address" %>
-    <% end %>
+  <%= f.simple_fields_for(:labels) do |roles_form| %>
+    
+    <%= roles_form.input :title %>
+    <%= roles_form.input :content %>
   
-
   <% end %>
+  <% end %>
+  <div>
+  <% Label.all.each do |label| %>
+  <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+  <label style = "background-color:aquamarine"> label.title</label>
+  <% end %>
+  </div>
   <div class="actions">
     <%= f.submit 'Unda task', class:'btn btn-success' %>
   </div>

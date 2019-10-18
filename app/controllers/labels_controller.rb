@@ -14,6 +14,8 @@ class LabelsController < ApplicationController
   def new
     @label = Label.new
     @label.user_id = current_user.id
+    @label.tasks.build
+    @label.tasks_labels.build
   end
 
   # GET /labels/1/edit

@@ -30,7 +30,8 @@ class TasksController < ApplicationController
     @task = current_user.tasks.build
     @task.user_id = current_user.id
     @task.labels.build
-    @task.label_associations.build
+    @task.tasks_labels.build
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @task }
@@ -46,6 +47,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.build(task_params)
     @task.user_id = current_user.id
     #@task.labels.build(task_params)
+    @labels= Label.all
     if @task.save
       redirect_to tasks_url, notice: t('tasks.success')
     else
@@ -78,7 +80,8 @@ class TasksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def task_params
       #params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, label_id:[], label:[])
-      params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date, :term, :term1, :term2, :labels_attributes, :label_associations_attributes)
+      params.require(:task).permit([:name, :content, :status, :priority, :start_date, :end_date,
+       :term, :term1, :term2, label_ids: []])
     end
     
 end
