@@ -28,10 +28,8 @@ ActiveRecord::Schema.define(version: 2019_10_18_083011) do
     t.string "title"
     t.text "content"
     t.bigint "user_id"
-    t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_labels_on_task_id"
     t.index ["user_id"], name: "index_labels_on_user_id"
   end
 
@@ -71,7 +69,6 @@ ActiveRecord::Schema.define(version: 2019_10_18_083011) do
 
   add_foreign_key "label_associations", "labels"
   add_foreign_key "label_associations", "tasks"
-  add_foreign_key "labels", "tasks"
   add_foreign_key "labels", "users"
   add_foreign_key "tasks", "users"
   add_foreign_key "tasks_labels", "labels"
