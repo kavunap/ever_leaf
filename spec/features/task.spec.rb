@@ -128,10 +128,32 @@ RSpec.feature "Task management function", type: :feature do
       task  = Task.order('end_date desc').all
     expect(task).to eq([@task_newest, @task])
   end
-  scenario "test task search" do
+  scenario "test task search name" do
     visit tasks_path
     fill_in  'term1' ,  with: 'task1'
     click_on ' Search'
+    expect(page).to have_content('content1')
+  end
+  scenario "test task search by atached labels " do
+    click_on 'Creaate Own Labels'
+    click_on 'New Label'
+    fill_in 'Title', with: 'label title1'
+    fill_in 'Content', with: 'label content1'
+    click_on 'Unda Label'
+    click_on 'Creaate Own Labels'
+    click_on 'New Label'
+    fill_in 'Title', with: 'label title2'
+    fill_in 'Content', with: 'label content2'
+    click_on 'Unda Label'
+    @task = Task.first
+    @label1 = Label.first
+    @label2 = Label.last
+    @task.labels = [@label1,@label2]
+    @task.save
+    
+    visit tasks_path
+    fill_in  'term3' ,  with: 'label title1'
+    click_on '  Search'
     expect(page).to have_content('content1')
   end
 end

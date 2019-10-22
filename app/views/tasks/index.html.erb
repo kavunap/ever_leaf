@@ -1,3 +1,19 @@
+<h1>Labels</h1>
+<div style= "float:right; margin-top:0%; display:block; background-color:white">
+ <p>
+<p> <h2>Available Labels</h2>
+<% Label.all.each do |label| %>
+<ul>
+<li class = "user-tasks">
+Title:<%= label.title %>
+
+</li>
+</ul>
+
+<% end %>
+</p>
+</div>
+
 
 
 <%= paginate @tasks %>
@@ -13,7 +29,13 @@
   <%= text_field_tag :term, params[:term],placeholder:'  search by both name or status' %>
   <%= submit_tag 'Search', name: nil %>
  <% end %><br>
+ <%= form_tag(tasks_path, method: :get,style:'') do %>
+  <%= text_field_tag :term3, params[:term3],placeholder:'  search label title' %>
+  <%= submit_tag '  Search', name: nil %>
+ <% end %><br>
  
+
+
 <center><h1>Tasks</h1></center>
 
 <table class = "table-bordered" style = "margin-left:10%;">
@@ -24,8 +46,10 @@
       <th><%= t('tasks.content') %></th>
       <th><%= t('tasks.status') %></th>
       <th><%= t('tasks.priority') %></th>
+      <th>Number of labels attached to this Task</th>
       <th><%= t('tasks.start') %></th>
       <th><%= t('tasks.end') %></th>
+      
 
       <th> User</th>
       <th> Creation Date</th>
@@ -43,6 +67,7 @@
         <td><%= task.content %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
+        <td><%= task.labels.size %></td>
         <td><%= task.start_date %></td>
         <td><%= task.end_date %></td>
         <td><%= task.user.name %></td>

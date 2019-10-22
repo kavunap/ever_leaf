@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(
+ User.create!(
+
 
 
   name: "new",
@@ -18,11 +19,15 @@ User.create!(
 Label.create!(
   title: "label2",
   content: "content2",
-  user_id = 1
+  user_id: 1
 )
 
 Label.create!(
   title: "label3",
   content: "content3",
-  user_id = 1
+  user_id: 1
 )
+(4..10).each do |num|                                                    
+  Label.create!(title: "label title#{num}", content: "lable content#{num}", user_id: 1)        
+end                                                                    
+

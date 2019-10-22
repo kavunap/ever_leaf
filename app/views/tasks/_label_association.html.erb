@@ -1,0 +1,5 @@
+<div class="attorney_association">
+    <%= f.collection_select(:label_id, Label.all,
+      :id, :title, :content, :include_blank => true) %>
+    <%= link_to_function "remove", "$(this).up('.attorney_association').remove()" %>
+  </div>
