@@ -12,13 +12,10 @@
 
 <p>
   <strong>User:</strong>
-  <%= @label.user %>
+  <%= @label.user.name %>
 </p>
 
-<p>
-  <strong>Task:</strong>
-  <%= @label.task %>
-</p>
+
 
 <%= link_to 'Edit', edit_label_path(@label) %> |
 <%= link_to 'Back', labels_path %>

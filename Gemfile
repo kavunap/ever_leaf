@@ -9,6 +9,7 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0', '>= 3.0.1'
 gem 'devise'
+gem 'simple_form'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

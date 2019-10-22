@@ -13,4 +13,7 @@ module TasksHelper
 #     end
   
 #   end
+    # def checked(area)
+    #     @task.label_id.nil? ? false : @task.label_id.match(area)
+    # end
 end

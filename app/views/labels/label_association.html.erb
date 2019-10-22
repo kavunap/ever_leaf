@@ -1,0 +1,7 @@
+<div class="label_association">
+  <% fields_for :labels do |f| %>
+    <%= f.collection_select(:label_id, Label.all,
+      :id, :title, :include_blank => true) %>
+    <%= link_to_function "remove", "$(this).up('.label_association').remove()" %>
+  <% end %>
+  </div>
