@@ -18,12 +18,18 @@
 <% @user_tasks.each do |task| %>
  <% if @user.id == task.user_id %>
 <ul>
+
 <li>
   Name:<%= @user.tasks.name + '       ' %> <br/>Content:<%= task.content %>
+
+<li class = "user-tasks">
+  Name:<%= task.name + '       ' %> <br/>Content:<%= task.content %>
+
 </li>
 </ul>
   <% end %>
 <% end %>
 </p>
-
-<%= link_to 'Back', root_path, class: 'btn btn-info' %>
+<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-info' %>
+<%= link_to 'Back', tasks_path, class: 'btn btn-info' %>
+<br/><br/><br/><br/><br/><br/><br/><br/>

@@ -18,8 +18,8 @@
       <tr>
         <td><%= label.title %></td>
         <td><%= label.content %></td>
-        <td><%= label.user %></td>
-        <td><%= label.task %></td>
+        <td><%= label.user.name %></td>
+        <td><%= label.tasks.name %></td>
         <td><%= link_to 'Show', label %></td>
         <td><%= link_to 'Edit', edit_label_path(label) %></td>
         <td><%= link_to 'Destroy', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>

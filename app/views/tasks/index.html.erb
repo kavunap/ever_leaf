@@ -1,6 +1,19 @@
 
 
 <%= paginate @tasks %>
+<%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+  <%= text_field_tag :term1, params[:term1],placeholder:'  search by task name' %>
+  <%= submit_tag ' Search', name: nil %>
+ <% end %>
+ <%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+  <%= text_field_tag :term2, params[:term2],placeholder:'  search by status' %>
+  <%= submit_tag 'Search', name: nil %>
+ <% end %>
+ <%= form_tag(tasks_path, method: :get,style:'') do %>
+  <%= text_field_tag :term, params[:term],placeholder:'  search by both name or status' %>
+  <%= submit_tag 'Search', name: nil %>
+ <% end %><br>
+ 
 <center><h1>Tasks</h1></center>
 
 <table class = "table-bordered" style = "margin-left:10%;">
@@ -13,7 +26,10 @@
       <th><%= t('tasks.priority') %></th>
       <th><%= t('tasks.start') %></th>
       <th><%= t('tasks.end') %></th>
-      <th><%= t('tasks.user') %></th>
+
+      <th> User</th>
+      <th> Creation Date</th>
+
       <th colspan="3"><%= t('tasks.actions') %></th>
     </tr>
   </thead>
@@ -30,15 +46,16 @@
         <td><%= task.start_date %></td>
         <td><%= task.end_date %></td>
         <td><%= task.user.name %></td>
+        <td><%= task.created_at %></td>
+        
         <td><%= link_to 'Show', task, class: "btn btn-info" %></td>
         <td><%= link_to 'Edit', edit_task_path(task), class: "btn btn-info" %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr></p>
-      <% end %>
+    <% end %>
     <% end %>
   </tbody>
 </table>
-
 <br>
 <center>
 <%= link_to t('tasks.new'), new_task_path, class: "btn btn-info" %>

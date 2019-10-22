@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_161327) do
+ActiveRecord::Schema.define(version: 2019_10_14_084809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,13 @@ ActiveRecord::Schema.define(version: 2019_09_21_161327) do
     t.string "status", null: false
     t.string "priority", null: false
     t.date "start_date", null: false
-    t.date "end_date", null: false
+    t.datetime "end_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "label_id"
+    t.index ["label_id"], name: "index_tasks_on_label_id"
+    t.index ["status"], name: "index_tasks_on_status"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -51,4 +54,6 @@ ActiveRecord::Schema.define(version: 2019_09_21_161327) do
 
   add_foreign_key "labels", "tasks"
   add_foreign_key "labels", "users"
+  add_foreign_key "tasks", "labels"
+  add_foreign_key "tasks", "users"
 end

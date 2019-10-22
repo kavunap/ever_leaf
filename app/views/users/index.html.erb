@@ -1,5 +1,6 @@
 
 
+ <%= stylesheet_link_tag    'style' %>
 <h1>Users</h1>
 
 <table class = 'table'>
@@ -15,19 +16,19 @@
 
   <tbody>
     <% @users.each do |user| %>
+      <% if user.user_type == 'user' %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.user_type %></td>
         <td><%= user.tasks.count %></td>
+        
         <td><%= link_to 'Show', user, class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-info' %></td>
-        <% if user.user_type != 'admin' %>
-        <td><%= link_to 'Destroy', user, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else%>
-        <td><p class = 'font-weight-bold'>Not delete available for admin user</p></td>
-        <% end %>
+        <td><%= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+      
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
@@ -35,3 +36,4 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
+

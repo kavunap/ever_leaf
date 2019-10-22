@@ -1,3 +1,87 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.field{
+
+    
+}
+.user-card{
+    background-color: orangered;
+    position: relative;
+    width: 30%;
+    height: 200px;
+    border-block-color: red;
+    border-radius: 10%;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.login{
+    border-block-color: red;
+    border-radius: 20%;
+}
+#inside{
+    margin-top: 10px;
+}
+.signup-card{
+    background-color: orangered;
+    //position: relative;
+    width: 50%;
+    height: auto;
+    border-block-color: red;
+    border-radius: 10%;
+
+    display: inline-block;
+    padding:5%;
+    font-size: 20px;
+    font-style: oblique
+}
+body{
+    //background-image: image('user.png');
+    text-align: center;
+    background-color: grey;
+}
+h1{
+    //text-align: center;
+    font-style: oblique;
+    text-decoration-style: double;
+}
+.task-card{
+    background-color: orangered;
+    position: relative;
+    width: 60%;
+    height: 600px;
+    // border-block-color: red;
+    // border-radius: 10%;
+    margin-top: 10px;
+    padding-top: 10px;
+    //text-align: center;
+    //margin-left: 20px;
+    padding-left: 25px;
+    display: inline-block;
+}
+.field1{
+    //padding-left: 20px;
+    // margin-left: 80px;
+    // border-block-end-style: groove;
+    border-radius: 15px;
+    //float: right;
+
+}
+.error{
+    display: block;
+    float: right;
+    margin: 0%;
+    background-color: aqua;
+}
+.input{
+    margin-top: 30%;
+    
+}
+.field{
+    width: 100%;
+    float: left;
+}
+.label{
+    float: left;
+}

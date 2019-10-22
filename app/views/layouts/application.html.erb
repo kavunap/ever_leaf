@@ -6,6 +6,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+   
+   
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
@@ -13,7 +16,12 @@
   <body style = "margin-left:5%;margin-right:5%;">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <% if current_user %>
+  <%= link_to 'My page', user_path(current_user.id), class: 'btn btn-info' %>
+  <% end %>
+  <% if current_user && current_user.user_type == "admin" %>
+  <%= link_to 'Administration screen', admin_users_path, class: 'btn btn-info' %>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,40 +29,34 @@
     <ul class="nav navbar-nav ml-auto">
       
       <li class="nav-item">
-      <%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search tasks" %>
-        
-        <%= submit_tag "Search" %>
       
-      <% if params[:search] && @tasks.present? == false %>
-      <p>There are no tasks containing the term(s) <%= params[:search] %>.</p>
-      <% end %>
-      <% end %>
-      </li>
-      <% if current_user %>
-        Logged in as <%= current_user.name %>.
-        <%= link_to "Log Out", logout_url, class: 'btn btn-danger' %>
-      <% else %>
-        <%= link_to "Sign Up", signup_path, class: 'btn btn-success' %> or
-        <%= link_to "Log In", login_path, class: 'btn btn-success' %>
-      <% end %>
-      
-      </li>
+    
       <li class="nav-item">
         <i class="fas fa-cloud"></i>
-        
       </li>
+      
+      <% if current_user %>
+      <p> signed in as <%= current_user.name %>
       <li class="nav-item active">
-      <%= link_to 'Home', root_path, class: "btn btn-primary " %>
-      <% if current_user && current_user.user_type == 'admin' %>
-      <li class="nav-item">
-      <%= link_to 'Users', users_path, class: "btn btn-primary " %>
+      <%= link_to 'signout', logout_path, class: "btn btn-primary " %>
+      </li>
+      <% else %>
+      <li class="nav-item active">
+      <%= link_to 'Sign In', login_path, class: "btn btn-primary " %>
+      </li><li class="nav-item active">
+      <%= link_to 'Signup', signup_path, class: "btn btn-primary " %>
+
       </li>
       <% end %>
+      <li class="nav-item active">
+      <%= link_to 'Home', root_path, class: "btn btn-primary " %>
       </li>
+      
+      <% if current_user %>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+      <%= link_to 'Normal Users', users_path, class: "btn btn-primary " %>
       </li>
+      <% end %>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
@@ -65,6 +67,7 @@
     <p class="notice"><%= notice %></p>
     
     <%= yield %>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <footer class="page-footer font-small blue pt-4 fixed-bottom bg-info">
 
           <div class="container-fluid text-center text-md-left">
@@ -77,7 +80,12 @@
           <div class="footer-copyright text-center py-3">© 2019 Copyright:
             <a href="#"> DiveIntoCode.com</a>
           </div>
-
         </footer>
+        <script> 
+          setInterval(function(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "/i_am_still_here", true);
+          xhttp.send();
+        }, 5*60*1000); </script>
   </body>
 </html>

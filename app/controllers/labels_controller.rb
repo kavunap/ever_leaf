@@ -13,6 +13,7 @@ class LabelsController < ApplicationController
   # GET /labels/new
   def new
     @label = Label.new
+    @label.user_id = current_user.id
   end
 
   # GET /labels/1/edit
@@ -22,6 +23,7 @@ class LabelsController < ApplicationController
   # POST /labels
   def create
     @label = Label.new(label_params)
+    @label.user_id = current_user.id
 
     if @label.save
       redirect_to @label, notice: 'Label was successfully created.'
