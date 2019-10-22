@@ -65,9 +65,10 @@
   <% end %>
   <div class = "tables">
   <% Label.all.each do |label| %>
+    <% if label.user.id == current_user.id %>
     <%= f.label:title, label.title %>
   <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-  
+  <% end %>
   <% end %>
   
   </div>

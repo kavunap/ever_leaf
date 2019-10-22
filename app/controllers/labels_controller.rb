@@ -59,4 +59,9 @@ class LabelsController < ApplicationController
     def label_params
       params.require(:label).permit(:title, :content, :user_id)
     end
+    def only_use_own_label
+      if @label.user_id != current_user.id
+        redirect_to new_task_path, notice: "This label does not belong to you so that you can use it, click on create own label menu to create yours"
+      end
+    end
 end
