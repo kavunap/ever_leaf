@@ -13,6 +13,7 @@ RSpec.feature "Task management function", type: :feature do
     fill_in  'Email' ,  with: 'kavuna@gmail.Com'
     fill_in  'Password' ,  with: '123456'
     click_on  'SignIn'
+    visit tasks_path
     click_on 'Andika Umukoro'
       fill_in  'Name' ,  with: 'task1'
       fill_in  'Content' ,  with: 'content1'
@@ -68,7 +69,7 @@ RSpec.feature "Task management function", type: :feature do
     fill_in 'Name', with: 'name update'
     fill_in 'Content', with: 'content update'
 
-    click_on 'Sasaisha Task'
+    click_on 'Unda task'
 
     visit tasks_path
     expect(page).to have_content('name update')
