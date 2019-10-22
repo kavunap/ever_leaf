@@ -92,7 +92,6 @@ RSpec.feature "Task management function", type: :feature do
       expect(page).to have_content('Content haitakiwi kuwa wazi')
 
 
-  end
   
 
   end
