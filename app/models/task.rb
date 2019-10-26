@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   #has_and_belongs_to_many :labels
   # has_many :label_associations
   # # accepts_nested_attributes_for :labels
-  has_many :tasks_labels
+  has_many :tasks_labels, dependent: :destroy
   has_many :labels, :through => :tasks_labels
 
   accepts_nested_attributes_for :tasks_labels, :reject_if => proc { |a| 

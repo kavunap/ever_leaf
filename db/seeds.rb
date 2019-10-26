@@ -19,5 +19,6 @@ Label.create!(
 )
 (4..10).each do |num|                                                    
   Label.create!(title: "label title#{num}", content: "lable content#{num}", user_id: 1)        
-end                                                                    
+end 
+User.create!                                                                   
 
