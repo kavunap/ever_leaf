@@ -10,7 +10,6 @@ class TasksController < ApplicationController
       elsif params[:term2]
         Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
       else
-        #@tasks = Task.all.order('created_at desc').page params[:page]
         @tasks = Task.order_list(params[:sort_by]).page params[:page]
       end
     end
@@ -75,11 +74,5 @@ class TasksController < ApplicationController
     
     
 
-    # def is_signed_in?
-    #   if !user_signed_in?
-    #      redirect_to new_user_session_path
-    #   else 
-    #      ..proceed to the action intended to call
-    #   end
-    # end
+   
 end
