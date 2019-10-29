@@ -14,6 +14,8 @@ class LabelsController < ApplicationController
   def new
     @label = Label.new
     @label.user_id = current_user.id
+    @label.tasks.build
+    @label.tasks_labels.build
   end
 
   # GET /labels/1/edit
@@ -55,6 +57,6 @@ class LabelsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def label_params
-      params.require(:label).permit(:title, :content, :user_id, :task_id)
+      params.require(:label).permit(:title, :content, :user_id)
     end
 end
